@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import sys
 import argparse
+import pathlib
+import requests
 
 
 class FlickrApiError(Exception):
@@ -59,15 +61,17 @@ def download_kitten(image_folder, http, api_key, photo_id):
 
 
 
-def create_parser():
-    parser = argparse.
-
-
 def main():
     api_key = open('api-key.secret').read().strip()
-    parser = create_parser()
-    opts = parser.parse(args)
-    opts.target_dir.mkdir(parents=True, exist_ok=True)
+    # parser = create_parser()
+    # opts = parser.parse(args)
+    target_dir = pathlib.Path('./_imgs/')
+    target_dir = target_dir.expanduser().resolve()
+    target_dir.mkdir(parents=True, exist_ok=True)
+    s = requests.Session()
+    with open('./kittens-ids.txt') as ids:
+        for img_id in ids:
+            print(download_kitten(target_dir, s, api_key, img_id))
 
 
 
