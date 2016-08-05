@@ -93,6 +93,46 @@
               <li>Generate a nice HTML page containing all the images</li>
             </ol>
           </section>
+          <section>
+            <h2>Getting <i>all</i> the kittens</h2>
+            So code wise, I've extracted all the parsing into another module
+            to save clutter.
+            Also we are using <pre>requests</pre> because it's cool.
+          </section>
+          <section>
+            <h2>Connecting to Flickr</h2>
+            <pre><code language="python" data-indent>
+              def flickr_api(http, api_method, api_key, **api_params):
+                  api_params.update({
+                      'method': api_method,
+                      'api_key': api_key,
+                      'format': 'json',
+                      'nojsoncallback': 1
+                  })
+                  r = http.get('https://api.flickr.com/services/rest/',
+                               params=api_params)
+                  r.raise_for_status()  # HTTP Errors disappear here.
+                  data = r.json()  # Invalid JSON errors disappear here.
+                  if data.get('stat') != 'ok':
+                      # Flickr indicates failure by setting the `stat` variable.
+                      raise FlickrApiError(data)
+                  return data
+            </code></pre>
+          </section>
+          <section>
+            <h2>Getting the Metadata</h2>
+            <pre><code language="python" data-indent>
+              def download_kitten(image_folder, http, api_key, photo_id):
+                  # We need to get the original secret so we can get the image.
+                  # We also need the author, license, title and photo page URL.
+                  # Also check the `candownload` permission.
+                  data = flickr_api(http, 'flickr.photos.getInfo', api_key, photo_id=photo_id)
+                  sizes = flickr_api(http, 'flickr.photos.getSizes', api_key, photo_id=photo_id)
+                  photo_data = get_photo_data(data['photo'])
+                  image_url, image_filename = get_image_url_from_sizes(photo_data, sizes)
+            </code></pre>
+          </section>
+
 
         </section>
 
@@ -147,6 +187,32 @@
           { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
+
+      function deindent(string) {
+        if (string.trim() === "" || string.trim().indexOf('\n') === -1) {
+          return string.trim()
+        }
+        start_index = false;
+        end_index = 0;
+        lines = string.split('\n');
+        lines = lines.map(function (str) { return str.trimRight() });
+        line_indents = lines.map(function (str, idx) {
+          if (!str) {
+            // Empty line. Ignore
+            return Infinity
+          } else {
+            if (start_index === false) start_index = idx;
+            end_index = idx
+            return /\s*/.exec(str)[0].length
+          }
+        });
+        min_indent = Math.min.apply(Math, line_indents)
+        if (min_indent > 0) {
+          lines = lines.map(function (str) { return str.substring(min_indent) });
+        }
+
+        return lines.splice(start_index, end_index).join('\n');
+      }
 
     </script>
 
