@@ -7,7 +7,7 @@
 			var element = hljs_nodes[i];
 
 			if( element.hasAttribute( 'data-indent' ) ) {
-				element.innerHTML = deindent(element.innerHTML);
+				element.innerHTML = deindent(element.innerHTML, element.getAttribute( 'data-indent' ));
 			}
 
 			// trim whitespace if data-trim attribute is present

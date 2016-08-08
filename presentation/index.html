@@ -46,12 +46,13 @@
 
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
-        <section>
-          <h1><pre style="box-shadow: none;"><code class='lang-python' style='text-align: center;'>await kittens()</code></pre></h1>
-          <h3>Kitten pictures - Asynchronously</h3>
-          <p>
+        <section data-background='../code/_imgs/6157871473_3b4be04091_o.jpg'>
+          <h1><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
+          <h3 data-dropshadow>Kitten pictures - Asynchronously</h3>
+          <p data-dropshadow>
             <small>Lee Symes</small>
           </p>
+          <footnote>Background image &lquot;Kitten&rquot;(<a href='https://flic.kr/p/ao9GDP'>https://flic.kr/p/ao9GDP</a>) by <b>Sergey Ivanov</b> is licensed under <span data-cc='by-sa/2.0'></span></footnote>
         </section>
 
         <section>
@@ -60,7 +61,7 @@
             <p>
               Worked at Catalyst for 1 and a half.
               Written Python, JavaScript, PHP, Perl.
-              Toched GoLang for a bit(it's a nice language - try it)
+              Touched GoLang for a bit(it's a nice language - try it)
             </p>
           </section>
           <section>
@@ -102,34 +103,37 @@
           <section>
             <h2>Connecting to Flickr</h2>
             <pre><code language="python" data-indent>
-              def flickr_api(http, api_method, api_key, **api_params):
-                  api_params.update({
-                      'method': api_method,
-                      'api_key': api_key,
-                      'format': 'json',
-                      'nojsoncallback': 1
-                  })
-                  r = http.get('https://api.flickr.com/services/rest/',
-                               params=api_params)
-                  r.raise_for_status()  # HTTP Errors disappear here.
-                  data = r.json()  # Invalid JSON errors disappear here.
-                  if data.get('stat') != 'ok':
-                      # Flickr indicates failure by setting the `stat` variable.
-                      raise FlickrApiError(data)
-                  return data
+              class Flickr():
+                  def __init__(self, http, api_key):
+                      self.http = http
+                      self.api_key = api
+
+                  def api_call(self, api_method, **api_params):
+                      api_params.update(method=api_method, api_key=self.api_key,
+                                        format='json', nojsoncallback=1)
+                      r = self.http.get('https://api.flickr.com/services/rest/',
+                                        params=api_params)
+                      r.raise_for_status()  # HTTP Errors disappear here.
+                      data = r.json()  # Invalid JSON errors disappear here.
+                      if data.get('stat') != 'ok':
+                          # Flickr indicates failure by setting the `stat` variable.
+                          raise FlickrApiError(data)
+                      return data
             </code></pre>
           </section>
           <section>
             <h2>Getting the Metadata</h2>
             <pre><code language="python" data-indent>
-              def download_kitten(image_folder, http, api_key, photo_id):
+              def download_kitten(flickr, image_folder, photo_id):
                   # We need to get the original secret so we can get the image.
                   # We also need the author, license, title and photo page URL.
                   # Also check the `candownload` permission.
-                  data = flickr_api(http, 'flickr.photos.getInfo', api_key, photo_id=photo_id)
-                  sizes = flickr_api(http, 'flickr.photos.getSizes', api_key, photo_id=photo_id)
+                  data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
+                  sizes = flickr_api('flickr.photos.getSizes', photo_id=photo_id)
                   photo_data = get_photo_data(data['photo'])
                   image_url, image_filename = get_image_url_from_sizes(photo_data, sizes)
+                  image_path = image_folder.joinpath(image_filename)
+                  photo_data['image_path'] = image_path
             </code></pre>
           </section>
 
@@ -147,6 +151,7 @@
         </div>
         <div class="footer-inner">
           <div>
+            <div id="footnote-holder"></div>
             <!-- NOTE: use only one of these. open-source-technologists is the standard -->
             <p class="open-source-technologists">open source technologists</p>
             <!-- <p class="freedom-to-innovate">freedom to innovate</p> -->
@@ -184,17 +189,25 @@
           { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'custom_plugin/dropshadow.js', async: true, condition: function() { return !!document.querySelector( '[data-dropshadow]' ); } },
+          { src: 'custom_plugin/cc-licenses.js', async: true, condition: function() { return !!document.querySelector( '[data-cc]' ); } },
+          { src: 'custom_plugin/footnotes.js', async: true, condition: function() { return !!document.querySelector( 'footnote' ) && document.querySelector( '#footnote-holder' ); } }
         ]
       });
 
-      function deindent(string) {
-        if (string.trim() === "" || string.trim().indexOf('\n') === -1) {
-          return string.trim()
+      function deindent(string, indent_offset) {
+        if (indent_offset !== undefined) {
+          indent_offset = parseInt(indent_offset) || 0;
+        } else {
+          indent_offset = 0;
         }
-        start_index = false;
-        end_index = 0;
-        lines = string.split('\n');
+        if (string.trim() === "" || string.trim().indexOf('\n') === -1) {
+          return string.trim();
+        }
+        var start_index = false;
+        var end_index = 0;
+        var lines = string.split('\n');
         lines = lines.map(function (str) { return str.trimRight() });
         line_indents = lines.map(function (str, idx) {
           if (!str) {
@@ -206,13 +219,18 @@
             return /\s*/.exec(str)[0].length
           }
         });
-        min_indent = Math.min.apply(Math, line_indents)
+        min_indent = Math.min.apply(Math, line_indents) - indent_offset
         if (min_indent > 0) {
           lines = lines.map(function (str) { return str.substring(min_indent) });
+        } else if (min_indent < 0) {
+          // Need to indent further
+          var indent = ' '.repeat(-min_indent);
+          lines = lines.map(function (str) { return (indent + str).trimRight() });
         }
 
         return lines.splice(start_index, end_index).join('\n');
       }
+
 
     </script>
 
