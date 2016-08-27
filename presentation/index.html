@@ -19,6 +19,7 @@
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="lib/css/catalyst-syntax.css">
+    <link rel="stylesheet" href="custom_plugin/custom.css">
 
     <!-- Printing and PDF exports -->
     <script>
@@ -52,7 +53,7 @@
           <p data-dropshadow>
             <small>Lee Symes</small>
           </p>
-          <footnote>Background image &lquot;Kitten&rquot;(<a href='https://flic.kr/p/ao9GDP'>https://flic.kr/p/ao9GDP</a>) by <b>Sergey Ivanov</b> is licensed under <span data-cc='by-sa/2.0'></span></footnote>
+          <footnote>Background image: &ldquo;Kitten!&rdquo;(<a href='https://flic.kr/p/ao9GDP'>flic.kr/p/ao9GDP</a>) by <b>Sergey Ivanov</b> is licensed under <span data-cc='by-sa/2.0'></span></footnote>
         </section>
 
         <section>
@@ -67,9 +68,11 @@
           <section>
             <h2>About Me</h2>
             <p>
-              Am Transgender
-              Have Depression and Anxiety
-              Neither the depression, nor the anxiety have been very useful for writing this talk.
+              I have Depression and Anxiety.
+            </p>
+            <p>
+              Neither the depression, nor the anxiety have been
+              very useful for writing this talk.
             </p>
           </section>
         </section>
@@ -98,42 +101,53 @@
             <h2>Getting <i>all</i> the kittens</h2>
             So code wise, I've extracted all the parsing into another module
             to save clutter.
-            Also we are using <pre>requests</pre> because it's cool.
+            Also we are using <i><code>requests</code></i> because it's cool.
           </section>
           <section>
             <h2>Connecting to Flickr</h2>
             <pre><code language="python" data-indent>
               class Flickr():
-                  def __init__(self, http, api_key):
-                      self.http = http
-                      self.api_key = api
+                def __init__(self, session, api_key):
+                  self.session = session
+                  self.default_params = dict(format='json', nojsoncallback=1,
+                                             api_key=self.api_key)
 
-                  def api_call(self, api_method, **api_params):
-                      api_params.update(method=api_method, api_key=self.api_key,
-                                        format='json', nojsoncallback=1)
-                      r = self.http.get('https://api.flickr.com/services/rest/',
-                                        params=api_params)
-                      r.raise_for_status()  # HTTP Errors disappear here.
-                      data = r.json()  # Invalid JSON errors disappear here.
-                      if data.get('stat') != 'ok':
-                          # Flickr indicates failure by setting the `stat` variable.
-                          raise FlickrApiError(data)
-                      return data
+                def api_call(self, api_method, **api_params):
+                  api_params.update(method=api_method, **self.default_params)
+                  r = self.http.get('https://api.flickr.com/services/rest/',
+                                    params=api_params)
+                  r.raise_for_status()  # HTTP Errors disappear here.
+                  data = r.json()  # Invalid JSON errors disappear here.
+                  if data.get('stat') != 'ok':
+                    # Flickr indicates failure by setting the `stat` variable.
+                    raise FlickrApiError(data)
+                  return data
             </code></pre>
           </section>
           <section>
             <h2>Getting the Metadata</h2>
             <pre><code language="python" data-indent>
               def download_kitten(flickr, image_folder, photo_id):
-                  # We need to get the original secret so we can get the image.
-                  # We also need the author, license, title and photo page URL.
-                  # Also check the `candownload` permission.
-                  data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
-                  sizes = flickr_api('flickr.photos.getSizes', photo_id=photo_id)
-                  photo_data = get_photo_data(data['photo'])
-                  image_url, image_filename = get_image_url_from_sizes(photo_data, sizes)
-                  image_path = image_folder.joinpath(image_filename)
-                  photo_data['image_path'] = image_path
+                data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
+                sizes = flickr_api('flickr.photos.getSizes', photo_id=photo_id)
+
+                photo_data = get_photo_data(data['photo'])
+                image_url, image_filename = \
+                  get_image_url_from_sizes(photo_data, sizes)
+
+                image_path = image_folder + '/' + image_filename
+                photo_data['image_path'] = image_path
+            </code></pre>
+          </section>
+          <section>
+            <h2>Downloading the Kitten</h2>
+            <pre><code language="python" data-indent="2">
+              # image_url, image_path from previous slide.
+              img = flickr.session.get(image_url, stream=True)
+              img.raise_for_status()
+              with open(image_path, 'wb') as file:
+                shutil.copyfileobj(img.raw, file)
+              return photo_data
             </code></pre>
           </section>
 
@@ -151,11 +165,14 @@
         </div>
         <div class="footer-inner">
           <div>
-            <div id="footnote-holder"></div>
+            <div class="footer-inner-footnote">
+              <div id="footnote-holder"></div>
+            </div>
             <!-- NOTE: use only one of these. open-source-technologists is the standard -->
             <p class="open-source-technologists">open source technologists</p>
             <!-- <p class="freedom-to-innovate">freedom to innovate</p> -->
           </div>
+
         </div>
       </div>
     </div>

@@ -1,0 +1,35 @@
+
+footnote {
+  font-size: 0.8rem;
+  color: #50433C;
+}
+
+.footer-inner-footnote {
+  position: absolute;
+  right: 430px;
+  padding: auto 10px;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+#footnote-holder {
+  font-size: 1.2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+#footnote-holder > * {
+  opacity: 100%;
+  transition: opacity .5s;
+}
+
+#footnote-holder > *.hidden {
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+#footnote-holder footnote {
+  font-size: inherit;
+}
