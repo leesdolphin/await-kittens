@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+    <meta http-equiv='x-ua-compatible' content='ie=edge'>
+
+    <style>
+      {% if inline_style or not stylesheet_location %}
+      {% include 'style.css' %}
+      {% endif %}
+      html {
+        font-family: "Lato", "Ubuntu", sans-serif;
+      }
+      body {
+        margin: 0;
+      }
+      .kitten-container .kitten-heading {
+        font-size: 3em;
+      }
+      .kitten-container .kitten {
+        min-width: 38em;
+      }
+    </style>
+    {% if not inline_style and stylesheet_location %}
+      <link rel="stylesheet" href="{{stylesheet_location|rel_to(output_location)}}"
+            media="screen" charset="utf-8">
+    {% endif %}
+  </head>
+  <body>
+    <div class='kitten-container'>
+      <span class='kitten-heading'>
+        {% if kittens|length == 1  %}
+          Downloading {{ kittens|length }} kitten
+        {% else %}
+          Downloading {{ kittens|length }} kittens
+        {% endif %}
+        took {{ time|to_readable_timedelta }}<small>(approximately {{ per_kitten_time|to_readable_timedelta }} per kitten)</small>
+      </span>
+      {% for kitten in kittens %}
+        <div class='kitten'><div class='kitten-img'><img src='{{kitten.image_path|rel_to(output_location)}}' alt='{{kitten.title}}' /></div><footnote class='kitten-info' data-footnote-ref='[{{loop.index}}]'>
+            <span class='kitten-id'>[{{loop.index}}] </span>&ldquo;{{kitten.title}}&rdquo;(<a href='{{kitten.short_url}}'>{{kitten.short_no_scheme_url}}</a>)
+            by
+            <b><a href='https://www.flickr.com/people/{{kitten.owner.path}}' class='no-colour'>
+              {{kitten.owner.realname|default(kitten.owner.username, true)}}
+            </a></b>
+            {{kitten.license|license_html}}
+          </footnote></div>
+      {% endfor %}
+    </div>
+
+  </body>
+</html>

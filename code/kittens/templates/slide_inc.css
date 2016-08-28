@@ -1,0 +1,88 @@
+.kitten-pinwheel {
+  position: relative;
+  display: block;
+}
+.kitten-pinwheel>.kitten-img, .kitten-pinwheel>.kitten-img>.footnote-ref, .kitten-pinwheel>.kitten-img>img.kitten-pic {
+  position: absolute;
+  display: block;
+  padding: 0px;
+  margin: 0px;
+}
+.kitten-pinwheel>.kitten-img {
+  width: 50%;
+  height: 50%;
+  box-sizing: border-box;
+}
+.kitten-pinwheel footnote {
+  display: none;
+}
+.kitten-pinwheel>.kitten-img>img.kitten-pic {
+  max-width: 100%;
+  max-height: 100%;
+  display: inline-block;
+}
+.kitten-pinwheel>.kitten-img>.footnote-ref {
+  background-color: rgba(200, 200, 200, 0.4);
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+}
+
+/*top left*/
+.kitten-pinwheel>.kitten-img.kitten-img-1 {
+  right: 50%;
+  bottom: 50%;
+}
+.kitten-pinwheel>.kitten-img.kitten-img-1>img, .kitten-pinwheel>.kitten-img.kitten-img-1>.footnote-ref {
+  right: 0px;
+  bottom: 0px;
+}
+
+/*top right*/
+.kitten-pinwheel>.kitten-img.kitten-img-2 {
+  left: 50%;
+  bottom: 50%;
+}
+.kitten-pinwheel>.kitten-img.kitten-img-2>img, .kitten-pinwheel>.kitten-img.kitten-img-2>.footnote-ref {
+  left: 0px;
+  bottom: 0px;
+}
+
+/*bottom left*/
+.kitten-pinwheel>.kitten-img.kitten-img-3 {
+  right: 50%;
+  top: 50%;
+}
+.kitten-pinwheel>.kitten-img.kitten-img-3>img, .kitten-pinwheel>.kitten-img.kitten-img-3>.footnote-ref {
+  right: 0px;
+  top: 0px;
+}
+
+/*bottom right*/
+.kitten-pinwheel>.kitten-img.kitten-img-4 {
+  left: 50%;
+  top: 50%;
+}
+.kitten-pinwheel>.kitten-img.kitten-img-4>img, .kitten-pinwheel>.kitten-img.kitten-img-4>.footnote-ref {
+  left: 0px;
+  top: 0px;
+}
+
+.kitten-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: auto;
+  z-index: 20;
+  font-size: 2;
+}
+.kitten-time>span {
+  background-color: white;
+  margin: auto;
+}

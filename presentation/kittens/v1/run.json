@@ -1,0 +1,95 @@
+{
+  "per_kitten_time": 3.727086,
+  "time": 14.908342,
+  "kittens": [
+    {
+      "id": 5490797607,
+      "title": "Kitten",
+      "short_no_scheme_url": "flic.kr/p/9ncLQg",
+      "owner": {
+        "path_alias": null,
+        "id": "30967075@N08",
+        "realname": "",
+        "path": "30967075@N08",
+        "username": "dia_n"
+      },
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/5490797607_fef1c69401_b.jpg",
+      "short_url": "https://flic.kr/p/9ncLQg",
+      "license": {
+        "url": "https://creativecommons.org/licenses/by/2.0/",
+        "name": "Attribution License"
+      },
+      "description": "",
+      "urls": {
+        "photopage": "https://www.flickr.com/photos/30967075@N08/5490797607/"
+      }
+    },
+    {
+      "id": 3732837915,
+      "title": "Kittens!",
+      "short_no_scheme_url": "flic.kr/p/6FRLEp",
+      "owner": {
+        "path_alias": "nebarnix",
+        "id": "70259473@N00",
+        "realname": "Jasper Nance",
+        "path": "nebarnix",
+        "username": "nebarnix"
+      },
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/3732837915_e2d87027ae_b.jpg",
+      "short_url": "https://flic.kr/p/6FRLEp",
+      "license": {
+        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/",
+        "name": "Attribution-NonCommercial-NoDerivs License"
+      },
+      "description": "Meet Hurley. He is one of the kittens at the kit-kat rescue center that Erica and I volunteer at on weekends. What a sweetie!",
+      "urls": {
+        "photopage": "https://www.flickr.com/photos/nebarnix/3732837915/"
+      }
+    },
+    {
+      "id": 15811753760,
+      "title": "Kitten",
+      "short_no_scheme_url": "flic.kr/p/q6enw9",
+      "owner": {
+        "path_alias": null,
+        "id": "29638108@N06",
+        "realname": "Jennifer C.",
+        "path": "29638108@N06",
+        "username": "www.metaphoricalplatypus.com"
+      },
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/15811753760_435a571975_b.jpg",
+      "short_url": "https://flic.kr/p/q6enw9",
+      "license": {
+        "url": "https://creativecommons.org/licenses/by/2.0/",
+        "name": "Attribution License"
+      },
+      "description": "",
+      "urls": {
+        "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
+      }
+    },
+    {
+      "id": 2553836823,
+      "title": "Kittens!",
+      "short_no_scheme_url": "flic.kr/p/4TF5Hn",
+      "owner": {
+        "path_alias": "nicsuzor",
+        "id": "85603833@N00",
+        "realname": "Nicolas Suzor",
+        "path": "nicsuzor",
+        "username": "nicsuzor"
+      },
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/2553836823_c946e572ae_b.jpg",
+      "short_url": "https://flic.kr/p/4TF5Hn",
+      "license": {
+        "url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "name": "Attribution-ShareAlike License"
+      },
+      "description": "The biggest of the bunch.",
+      "urls": {
+        "photopage": "https://www.flickr.com/photos/nicsuzor/2553836823/"
+      }
+    }
+  ],
+  "inline_style": false
+}

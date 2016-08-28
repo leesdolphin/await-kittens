@@ -7,7 +7,7 @@ footnote {
 .footer-inner-footnote {
   position: absolute;
   right: 430px;
-  padding: auto 10px;
+  padding: 1px 10px;
   left: 0;
   height: 100%;
   display: flex;
@@ -16,11 +16,13 @@ footnote {
 }
 
 #footnote-holder {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: .5rem;
 }
 #footnote-holder > * {
+  display: block;
   opacity: 100%;
   transition: opacity .5s;
 }
@@ -32,4 +34,13 @@ footnote {
 
 #footnote-holder footnote {
   font-size: inherit;
+}
+
+ul.libs .fa, ul.libs .fa {
+  margin-left: 0.2rem;
+  margin-right: 0.1rem;
+}
+
+ul.libs a code {
+  margin-right: 0.2rem;
 }

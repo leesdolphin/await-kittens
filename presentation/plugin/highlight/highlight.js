@@ -1,5 +1,40 @@
 // START CUSTOM REVEAL.JS INTEGRATION
 (function() {
+  function deindent(string, indent_offset) {
+    if (indent_offset !== undefined) {
+      indent_offset = parseInt(indent_offset) || 0;
+    } else {
+      indent_offset = 0;
+    }
+    if (string.trim() === "" || string.trim().indexOf('\n') === -1) {
+      return string.trim();
+    }
+    var start_index = false;
+    var end_index = 0;
+    var lines = string.split('\n');
+    lines = lines.map(function (str) { return str.trimRight() });
+    line_indents = lines.map(function (str, idx) {
+      if (!str) {
+        // Empty line. Ignore
+        return Infinity
+      } else {
+        if (start_index === false) start_index = idx;
+        end_index = idx
+        return /\s*/.exec(str)[0].length
+      }
+    });
+    min_indent = Math.min.apply(Math, line_indents) - indent_offset
+    if (min_indent > 0) {
+      lines = lines.map(function (str) { return str.substring(min_indent) });
+    } else if (min_indent < 0) {
+      // Need to indent further
+      var indent = ' '.repeat(-min_indent);
+      lines = lines.map(function (str) { return (indent + str).trimRight() });
+    }
+
+    return lines.splice(start_index, end_index).join('\n');
+  }
+
 	if( typeof window.addEventListener === 'function' ) {
 		var hljs_nodes = document.querySelectorAll( 'pre code' );
 

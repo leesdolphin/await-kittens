@@ -1,0 +1,80 @@
+
+
+.kitten-container {
+  position: relative;
+}
+.kitten-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.kitten-container * {
+  box-sizing: border-box;
+}
+.kitten-container .kitten-heading {
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(0,0,0,0.4);
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  padding: 20px;
+  width: auto;
+  color: white;
+}
+.kitten-container .kitten-heading small {
+  vertical-align: baseline;
+}
+.kitten-container .kitten {
+  max-width: 100%;
+  background-color: #EEEEEE;
+  border: 0.1em solid white;
+  padding: 0.5em;
+  position: relative;
+}
+.kitten-container .kitten .kitten-img {
+  font-size: 0px;
+}
+.kitten-container .kitten .kitten-img img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.kitten-container .kitten .kitten-info {
+  font-size: 20px;
+}
+.kitten-container .kitten .footnote-ref {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #EEEEEE;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  border-color: white;
+}
+.kitten-container .kitten .kitten-info a {
+  text-decoration: none;
+  color: inherit
+}
+.kitten-container .kitten .kitten-info a:hover {
+  text-decoration: underline;
+}
+
+{% if grid %}
+  {% if grid == 'vertical' %}
+    {% include 'flex-vertical-grid.css' %}
+  {% elif grid == 'css' %}
+    {% include 'css-grid.css' %}
+  {% else %}
+    {% include 'flex-grid.css' %}
+  {% endif %}
+{% else %}
+  {% include 'css-grid.css' %}
+{% endif %}

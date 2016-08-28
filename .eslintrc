@@ -1,0 +1,19 @@
+{
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": false
+    },
+    "extends": "standard",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": false
+    },
+    "globals": {
+      "Reveal": false
+    },
+    "rules": {
+      "prefer-const": "error",
+      "no-var": "error"
+    }
+}

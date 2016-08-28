@@ -1,0 +1,27 @@
+.kitten-container {
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.kitten-container .kitten-heading {
+  flex: 100 0 100%;
+  display: block;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+.kitten-container .kitten {
+  flex: 1 1;
+  min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+}
+.kitten-container .kitten .kitten-img {
+}
+.kitten-container .kitten .kitten-img img {
+}

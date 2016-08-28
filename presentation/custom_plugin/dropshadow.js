@@ -1,26 +1,26 @@
 
-(function(){
-	var shadow_nodes = document.querySelectorAll( '[data-dropshadow]' );
-	for( var i = 0, len = shadow_nodes.length; i < len; i++ ) {
-		var element = shadow_nodes[i];
-		var shadow = element.getAttribute('data-dropshadow') || '';
-		var shadow_width = '3px';
-		var shadow_height = '3px';
-		var shadow_radius = '5px';
-		var shadow_colour = 'rgba(220, 220, 220, 0.4)';
-		try {
-			var shadow_parts = JSON.parse(shadow)
-			shadow_width = shadow_parts.w || shadow_parts.width || shadow_width
-			shadow_height = shadow_parts.h || shadow_parts.height || shadow_height
-			shadow_radius = shadow_parts.r || shadow_parts.radius || shadow_radius
-			shadow_colour = shadow_parts.c || shadow_parts.colour || shadow_parts.color || shadow_colour
-		} catch (e) {
-			// noop
-		}
-		ne_shadow = ['-' + shadow_width, '-' + shadow_height, shadow_radius, shadow_colour].join(' ')
-		nw_shadow = [shadow_width, '-' + shadow_height, shadow_radius, shadow_colour].join(' ')
-		se_shadow = ['-' + shadow_width, shadow_height, shadow_radius, shadow_colour].join(' ')
-		sw_shadow = [shadow_width, shadow_height, shadow_radius, shadow_colour].join(' ')
-		element.style.textShadow = [ne_shadow, nw_shadow, se_shadow, sw_shadow].join(',')
-	}
-})();
+(function () {
+  const shadowNodes = document.querySelectorAll('[data-dropshadow]')
+  for (let i = 0, len = shadowNodes.length; i < len; i++) {
+    const element = shadowNodes[i]
+    const shadow = element.getAttribute('data-dropshadow') || ''
+    let shadowWidth = '3px'
+    let shadowHeight = '3px'
+    let shadowRadius = '5px'
+    let shadowColour = 'rgba(220, 220, 220, 0.4)'
+    try {
+      const shadowParts = JSON.parse(shadow)
+      shadowWidth = shadowParts.w || shadowParts.width || shadowWidth
+      shadowHeight = shadowParts.h || shadowParts.height || shadowHeight
+      shadowRadius = shadowParts.r || shadowParts.radius || shadowRadius
+      shadowColour = shadowParts.c || shadowParts.colour || shadowParts.color || shadowColour
+    } catch (e) {
+      // noop
+    }
+    const neShadow = ['-' + shadowWidth, '-' + shadowHeight, shadowRadius, shadowColour].join(' ')
+    const nwShadow = [shadowWidth, '-' + shadowHeight, shadowRadius, shadowColour].join(' ')
+    const seShadow = ['-' + shadowWidth, shadowHeight, shadowRadius, shadowColour].join(' ')
+    const swShadow = [shadowWidth, shadowHeight, shadowRadius, shadowColour].join(' ')
+    element.style.textShadow = [neShadow, nwShadow, seShadow, swShadow].join(',')
+  }
+})()
