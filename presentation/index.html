@@ -108,23 +108,24 @@
             </section>
             <section>
               <h2>Connecting to Flickr</h2>
-              <pre><code language="python" data-indent>
+              <pre><code language="python" data-indent data-mark>
                 class Flickr():
+
                   def __init__(self, session, api_key):
-                    self.session = session
-                    self.default_params = dict(format='json', nojsoncallback=1,
-                                               api_key=api_key)
+                      self.session = session
+                      self.default_params = dict(format='json', nojsoncallback=1,
+                                                 api_key=api_key)
 
                   def api_call(self, api_method, **api_params):
-                    api_params.update(method=api_method, **self.default_params)
-                    r = self.session.get('https://api.flickr.com/services/rest/',
-                                         params=api_params)
-                    r.raise_for_status()  # HTTP Errors disappear here.
-                    data = r.json()  # Invalid JSON errors disappear here.
-                    if data.get('stat') != 'ok':
-                      # Flickr indicates failure by setting the `stat` variable.
-                      raise FlickrApiError(data)
-                    return data
+                      api_params.update(method=api_method, **self.default_params)
+                      r = <mark>self.session.get</mark>('https://api.flickr.com/services/rest/',
+                                           params=api_params)
+                      r.raise_for_status()  # HTTP Errors disappear here.
+                      data = <mark>r.json()</mark>  # Invalid JSON errors disappear here.
+                      if data.get('stat') != 'ok':
+                          # Flickr indicates failure by setting the `stat` variable.
+                          raise FlickrApiError(data)
+                      return data
               </code></pre>
             </section>
             <section>
@@ -257,13 +258,14 @@
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'custom_plugin/kittens_include.js', async: false, condition: function() { return !!document.querySelector( '[data-kittens]' ); } },
+          { src: 'custom_plugin/code_mark.js', condition: function() { return !!document.querySelector( '[data-mark]' ); } },
+          { src: 'plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'custom_plugin/dropshadow.js', async: true, condition: function() { return !!document.querySelector( '[data-dropshadow]' ); } },
           { src: 'custom_plugin/cc-licenses.js', async: false, condition: function() { return !!document.querySelector( '[data-cc]' ); } },
           { src: 'custom_plugin/footnotes.js', async: true, condition: function() { return !!document.querySelector( 'footnote' ) && document.querySelector( '#footnote-holder' ); } },
-          { src: 'custom_plugin/kittens_include.js', async: false, condition: function() { return !!document.querySelector( '[data-kittens]' ); } },
         ]
       });
     </script>

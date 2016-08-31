@@ -44,3 +44,15 @@ ul.libs .fa, ul.libs .fa {
 ul.libs a code {
   margin-right: 0.2rem;
 }
+
+.code-mark.code-mark-mark {
+  background-color: yellow;
+}
+
+.code-mark.code-mark-add {
+  background-color: green;
+}
+
+.code-mark.code-mark-rm {
+  background-color: red;
+}

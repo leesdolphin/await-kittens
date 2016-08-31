@@ -2,15 +2,17 @@
   function map (arr, fn) {
     return Array.prototype.map.call(arr, fn)
   }
+  function forEach (arr, fn) {
+    return Array.prototype.forEach.call(arr, fn)
+  }
   const kittenNodes = document.querySelectorAll('[data-kittens]')
   const kittenIds = {}
-  for (let i = 0, len = kittenNodes.length; i < len; i++) {
-    const element = kittenNodes[i]
+  forEach(kittenNodes, function (element) {
     const kittenId = element.getAttribute('data-kittens');
     (kittenIds[kittenId] = kittenIds[kittenId] || []).push(element)
-  }
+  })
 
-  return Promise.all(Object.keys(kittenIds).map(function (kittenId) {
+  return Promise.all(map(Object.keys(kittenIds), function (kittenId) {
     const kittenElms = kittenIds[kittenId]
     return htmlKittens(kittenId, kittenElms)
   }))
