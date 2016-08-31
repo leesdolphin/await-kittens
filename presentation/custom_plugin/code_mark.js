@@ -6,7 +6,8 @@
     return Array.prototype.forEach.call(arr, fn)
   }
   forEach(document.querySelectorAll('[data-mark]'), function (element) {
-    const re = /<\/?(mark|add|rm)>(.*?)<\/\1>/gim
+    let fragCounter = 1
+    const re = /<\/?(mark|add|rm|fragment)>(.*?)<\/\1>/gim
     const str = element.innerHTML
     let lastEnd = 0
     element.innerHTML = ''
@@ -24,6 +25,10 @@
         markSpan.appendChild(contentElm)
         markSpan.classList.add('code-mark')
         markSpan.classList.add('code-mark-' + type)
+        if (type === 'fragment') {
+          markSpan.classList.add('fragment')
+          markSpan.setAttribute('data-fragment-index', fragCounter++)
+        }
         element.appendChild(markSpan)
       }
       lastEnd = re.lastIndex

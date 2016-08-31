@@ -130,14 +130,13 @@
             </section>
             <section>
               <h2>Getting the Metadata</h2>
-              <pre><code language="python" data-indent>
+              <pre><code language="python" data-indent data-mark>
                 def download_kitten(flickr, image_folder, photo_id):
-                  data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
-                  sizes = flickr.api_call('flickr.photos.getSizes', photo_id=photo_id)
+                  data = <mark>flickr.api_call</mark>('flickr.photos.getInfo', photo_id=photo_id)
+                  sizes = <mark>flickr.api_call</mark>('flickr.photos.getSizes', photo_id=photo_id)
 
-                  photo_data = get_photo_data(data['photo'])
-                  image_url, image_filename = \
-                    get_image_url_from_sizes(photo_data, sizes)
+                  photo_data = get_photo_data(data)
+                  image_url, image_filename = get_image_url_from_sizes(sizes)
 
                   image_path = image_folder + '/' + image_filename
                   photo_data['image_path'] = image_path
@@ -146,31 +145,32 @@
             </section>
             <section>
               <h2>Downloading the Kitten</h2>
-              <pre><code language="python" data-indent="2">
-                ...
-                # image_url, image_path from previous slide.
-                img = flickr.session.get(image_url, stream=True)
-                img.raise_for_status()
-                with open(image_path, 'wb') as file:
-                  shutil.copyfileobj(img.raw, file)
-                return photo_data
+              <pre><code language="python" data-indent="2" data-mark>
+                  # image_url, image_path from previous slide.
+                  img = <mark>flickr.session.get</mark>(image_url, stream=True)
+                  img.raise_for_status()
+                  content = <mark>img.content</mark>
+                  with open(image_path, 'wb') as file:
+                    file.write(content)
+                  return photo_data
               </code></pre>
             </section>
             <section>
               <h2>All together</h2>
-              <pre><code language="python" data-indent>
+              <pre><code language="python" data-indent data-mark>
                 import requests
                 from kittens.output import KittenWriter
-                flickr = Flickr(requests.session(),
-                                open('.flickr-key').read().strip())
-                with KittenWriter('v1') as writer:
-                  folder = writer.image_folder
-                  writer.add_all([
-                    download_kitten(flickr, folder, '5490797607'),
-                    download_kitten(flickr, folder, '3732837915'),
-                    download_kitten(flickr, folder, '15811753760'),
-                    download_kitten(flickr, folder, '2553836823')
-                  ])
+                def main():
+                  flickr = Flickr(requests.session(),
+                                  open('.flickr-key').read().strip())
+                  with KittenWriter('v1') as writer:
+                    folder = writer.image_folder
+                    writer.add_all([
+                      <fragment>download_kitten(flickr, folder, '5490797607'),</fragment>
+                      <fragment>download_kitten(flickr, folder, '3732837915'),</fragment>
+                      <fragment>download_kitten(flickr, folder, '15811753760'),</fragment>
+                      <fragment>download_kitten(flickr, folder, '2553836823')</fragment>
+                    ])
               </code></pre>
             </section>
             <section>

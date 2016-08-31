@@ -94,6 +94,8 @@ class KittenWriter():
         self._photos += photo_list
 
     def __enter__(self):
+        for item in pathlib.Path(self.image_folder).iterdir():
+            item.unlink()
         self._start_time = datetime.datetime.now()
         return self
 
