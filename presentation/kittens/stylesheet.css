@@ -80,6 +80,7 @@
   right: 0;
   padding: auto;
   z-index: 20;
+  font-size: 2;
 }
 .kitten-time>span {
   background-color: white;

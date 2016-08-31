@@ -61,7 +61,6 @@ def get_photo_data(raw_photo_info_resp):
             continue
         urls[url_data['type']] = url_data['_content']
     data['urls'] = urls
-    print(data_photo.get('owner', {}))
     owner = dict(
         id=data_photo.get('owner', {})['nsid'],
         username=data_photo.get('owner', {}).get('username', ''),

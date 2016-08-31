@@ -5,11 +5,15 @@ import pickle
 
 import ago
 
+
 from jinja2 import Environment, PackageLoader, Undefined
 from jinja2.filters import do_mark_safe, escape
 
+for parent in pathlib.Path(__file__).parents:
+    if (parent / '.git').is_dir():
+        break
 
-GIT_ROOT = pathlib.Path(__file__).parent.parent.parent
+GIT_ROOT = parent
 PRESENTATION_DIR = GIT_ROOT / 'presentation'
 KITTENS_DIR = PRESENTATION_DIR / 'kittens'
 
@@ -141,12 +145,12 @@ class KittenWriter():
         if vars is None:
             time = per_kitten = 0
             if self._start_time and self._finish_time:
-                time = self._finish_time - self._start_time
+                time = (self._finish_time - self._start_time).total_seconds()
             if self._photos and time is not None:
-                per_kitten = time / len(self._photos)
+                per_kitten = (time / len(self._photos))
             vars = dict(
-                time=time.total_seconds(),
-                per_kitten_time=per_kitten.total_seconds(),
+                time=time,
+                per_kitten_time=per_kitten,
                 kittens=self._photos,
             )
         with pickle_file.open('wb') as pf:
@@ -160,7 +164,7 @@ class KittenWriter():
         return vars
 
 
-if __name__ == '__main__':
+def refresh_all_templated_files():
     for folder in KITTENS_DIR.iterdir():
         if not folder.is_dir():
             continue
@@ -169,3 +173,7 @@ if __name__ == '__main__':
             KittenWriter(folder.name).write_out(use_pickle=True)
         else:
             print("No pickle found in", folder)
+
+
+if __name__ == '__main__':
+    refresh_all_templated_files()

@@ -1,7 +1,7 @@
 import requests
 
 from kittens.output import KittenWriter
-from kittens.v1_sync import Flickr, download_kitten
+from . import Flickr, download_kitten
 
 
 def main():

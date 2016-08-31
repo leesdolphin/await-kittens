@@ -1,3 +1,4 @@
+import glob
 from os import path
 
 from setuptools import find_packages, setup
@@ -13,6 +14,8 @@ here = path.abspath(path.dirname(__file__))
 # Get the long description from the README file
 # with open(path.join(here, '../README.rst'), encoding='utf-8') as f:
 long_description = "TODO"
+
+template_files = glob.glob(path.join(here, 'kittens/templates/*'))
 
 setup(
     name='await_kittens',
@@ -33,11 +36,15 @@ setup(
         'jinja2',
         'requests',
     ],
-    packages=find_packages(include=['kittens*', 'test*']),
-    include_package_data=True,
+    packages=find_packages(include=['kittens*']) + ['kittens.templates'],
+    package_data={
+        'kittens.templates': ['*']
+    },
     entry_points={
         'console_scripts': [
             # Format: 'exec = module.file:main_func'
+            'html_refresh = kittens.output:refresh_all_templated_files',
+            'download_all = kittens.__main__:download_all'
         ]
     },
     author='Lee Symes',

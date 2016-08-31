@@ -8,21 +8,21 @@ class Flickr():
         self.default_params = dict(format='json', nojsoncallback=1,
                                    api_key=api_key)
 
-    def api_call(self, api_method, **api_params):
+    async def api_call(self, api_method, **api_params):
         api_params.update(method=api_method, **self.default_params)
-        r = self.session.get('https://api.flickr.com/services/rest/',
-                             params=api_params)
-        r.raise_for_status()  # HTTP Errors disappear here.
-        data = r.json()  # Invalid JSON errors disappear here.
+        async with self.session.get('https://api.flickr.com/services/rest/',
+                                    params=api_params) as r:
+            r.raise_for_status()
+            data = await r.json()
         if data.get('stat') != 'ok':
             # Flickr indicates failure by setting the `stat` variable.
             raise FlickrApiError(data)
         return data
 
 
-def download_kitten(flickr, image_folder, photo_id):
-    data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
-    sizes = flickr.api_call('flickr.photos.getSizes', photo_id=photo_id)
+async def download_kitten(flickr, image_folder, photo_id):
+    data = await flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
+    sizes = await flickr.api_call('flickr.photos.getSizes', photo_id=photo_id)
 
     photo_data = get_photo_data(data)
     image_url, image_filename = get_image_url_from_sizes(sizes)
@@ -31,9 +31,9 @@ def download_kitten(flickr, image_folder, photo_id):
     photo_data['image_path'] = image_path
 
     # image_url, image_path from previous slide.
-    img = flickr.session.get(image_url, stream=True)
-    img.raise_for_status()
-    content = img.content
+    async with flickr.session.get(image_url) as img:
+        img.raise_for_status()
+        content = await img.read()
     with open(image_path, 'wb') as file:
         file.write(content)
     return photo_data
