@@ -47,10 +47,10 @@
 
 
     <div class="reveal">
-      <div class='footer-padding' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
+      <div class='footer-pmarking' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-          <section data-background='img/6157871473_3b4be04091_o.jpg'>
+          <section data-background='img/start_page_kitten.jpg'>
             <h1><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
             <h3 data-dropshadow>Kitten pictures - Asynchronously</h3>
             <p data-dropshadow>
@@ -108,7 +108,7 @@
             </section>
             <section>
               <h2>Connecting to Flickr</h2>
-              <pre><code language="python" data-indent data-mark>
+              <pre><code inline='python' data-indent data-mark>
                 class Flickr():
 
                   def __init__(self, session, api_key):
@@ -118,10 +118,10 @@
 
                   def api_call(self, api_method, **api_params):
                       api_params.update(method=api_method, **self.default_params)
-                      r = <mark>self.session.get</mark>('https://api.flickr.com/services/rest/',
+                      r = self.session.get('https://api.flickr.com/services/rest/',
                                            params=api_params)
                       r.raise_for_status()  # HTTP Errors disappear here.
-                      data = <mark>r.json()</mark>  # Invalid JSON errors disappear here.
+                      data = r.json()  # Invalid JSON errors disappear here.
                       if data.get('stat') != 'ok':
                           # Flickr indicates failure by setting the `stat` variable.
                           raise FlickrApiError(data)
@@ -130,10 +130,10 @@
             </section>
             <section>
               <h2>Getting the Metadata</h2>
-              <pre><code language="python" data-indent data-mark>
+              <pre><code inline='python' data-indent data-mark>
                 def download_kitten(flickr, image_folder, photo_id):
-                  data = <mark>flickr.api_call</mark>('flickr.photos.getInfo', photo_id=photo_id)
-                  sizes = <mark>flickr.api_call</mark>('flickr.photos.getSizes', photo_id=photo_id)
+                  data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
+                  sizes = flickr.api_call('flickr.photos.getSizes', photo_id=photo_id)
 
                   photo_data = get_photo_data(data)
                   image_url, image_filename = get_image_url_from_sizes(sizes)
@@ -145,11 +145,11 @@
             </section>
             <section>
               <h2>Downloading the Kitten</h2>
-              <pre><code language="python" data-indent="2" data-mark>
+              <pre><code inline='python' data-indent="2" data-mark>
                   # image_url, image_path from previous slide.
-                  img = <mark>flickr.session.get</mark>(image_url, stream=True)
+                  img = flickr.session.get(image_url, stream=True)
                   img.raise_for_status()
-                  content = <mark>img.content</mark>
+                  content = img.content
                   with open(image_path, 'wb') as file:
                     file.write(content)
                   return photo_data
@@ -157,7 +157,7 @@
             </section>
             <section>
               <h2>All together</h2>
-              <pre><code language="python" data-indent data-mark>
+              <pre><code class='python' data-indent data-mark>
                 import requests
                 from kittens.output import KittenWriter
                 def main():
@@ -165,11 +165,11 @@
                                   open('.flickr-key').read().strip())
                   with KittenWriter('v1') as writer:
                     folder = writer.image_folder
-                    writer.add_all([
-                      <fragment>download_kitten(flickr, folder, '5490797607'),</fragment>
-                      <fragment>download_kitten(flickr, folder, '3732837915'),</fragment>
-                      <fragment>download_kitten(flickr, folder, '15811753760'),</fragment>
-                      <fragment>download_kitten(flickr, folder, '2553836823')</fragment>
+                    writer.mark_all([
+                      download_kitten(flickr, folder, '5490797607'),
+                      download_kitten(flickr, folder, '3732837915'),
+                      download_kitten(flickr, folder, '15811753760'),
+                      download_kitten(flickr, folder, '2553836823')
                     ])
               </code></pre>
             </section>
@@ -180,8 +180,171 @@
 
           <section>
             <section>
-              <h2>Greatful thanks to</h2>
+              <h2>Going faster </h2>
+              <h3>using <i><code>asyncio</code></i> and <i><code>aiohttp</code></i></h3>
+            </section>
+          </section>
+          <section>
+            <section>
+              <h2>Async primer</h2>
+              <dl>
+                <span class='fragment'>
+                  <dt><code inline='python'>async def</code></dt>
+                  <dd>
+                    Creates an async function.<br \>
+                    Allows the use of the <code inline='python'>async</code> and <code inline='python'>await</code> keywords.
+                    Prevents the use of <code inline='python'>yield</code> and <code inline='python'>yield from</code>
+                  </dd>
+                </span>
+                <span class='fragment'>
+                  <dt><code inline='python'>await x</code></dt>
+                  <dd>
+                    'pauses' the function until <code inline='python'>x</code> is resolved.<br \>
+                    Internally uses <code inline='python'>yield from</code> added in Python 3.3
+                  </dd>
+                </span>
+              </dl>
+            </section>
+            <section>
+              <h2>My first async function</h2>
+              <pre><code class='python' data-indent data-mark>
+                import asyncio
+                <mark>async def</mark> print_hello_world(person):
+                  print("Preparing to say hello to", person)
+                  await asyncio.sleep(5)
+                  print("Hello", person)
 
+                <mark>print_hello_world</mark>("Kiwi PyCon")
+              </code></pre>
+              <div class='fragment'>
+                Nothing happens ...
+              </div>
+            </section>
+            <section>
+              <h2>Running async code</h2>
+              <pre><code class='python' data-indent data-mark>
+                import asyncio
+
+                <mark>async def</mark> print_hello_world(person):
+                  print("Preparing to say hello to", person)
+                  await asyncio.sleep(5)
+                  print("Hello", person)
+
+                loop = asyncio.get_event_loop()
+                print("I'm going to be polite")
+                loop.run_until_complete(<mark>print_hello_world</mark>("Kiwi PyCon"))
+                # Will only run once async_main is finished.
+                loop.close()
+              </code></pre>
+              <pre class='fragment'><code class='text' data-indent data-mark>
+                I'm going to be polite
+                Preparing to say hello to Kiwi PyCon
+                <fragment>Hello Kiwi PyCon</fragment>
+              </code></pre>
+            </section>
+            <section>
+              <h2>My first async kitten</h2>
+              <pre><code class='python' data-indent data-mark>
+                import asyncio
+                import aiohttp
+                image_url = ('https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg')
+
+                async def my_first_kitten(image_url):
+                  <mark>async with</mark> aiohttp.get(image_url) as img:
+                    img.raise_for_status()
+                    content = <mark>await</mark> img.read()
+                  with open('first_async_kitten.jpg', 'wb') as file:
+                    file.write(content)
+
+                loop = asyncio.get_event_loop()
+                loop.run_until_complete(my_first_kitten(image_url))
+                loop.close()
+              </code></pre>
+            </section>
+            <section>
+
+              <div class='kitten'><div class='kitten-img'><img src='img/first_async_kitten.jpg' alt='sleepy kitten' /></div><footnote class='kitten-info'>
+                  &ldquo;sleepy kitten&rdquo;(<a href='https://flic.kr/p/akzvGC'>flic.kr/p/akzvGC</a>)
+                  by
+                  <b><a href='https://www.flickr.com/people/bambe1964' class='no-colour'>
+                    bambe1964
+                  </a></b>
+                  <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
+                </footnote></div>
+
+            </section>
+          </section>
+          <section>
+
+
+
+
+
+
+
+
+
+
+
+            <section>
+              <pre><code inline='python' data-indent data-mark>
+                class Flickr():
+                  def __init__(self, aio_session, api_key):
+                    self.session = aio_session
+                    self.default_params = dict(format='json', nojsoncallback=1,
+                                               api_key=api_key)
+
+                  <mark>async</mark> def api_call(self, api_method, **api_params):
+                    api_params.update(method=api_method, **self.default_params)
+                    <mark>async with</mark> self.session.get(
+                        'https://api.flickr.com/services/rest/',
+                        params=api_params) as r:
+                      r.raise_for_status()
+                      data = <mark>await</mark> r.json()
+                    if data.get('stat') != 'ok':
+                      # Flickr indicates failure by setting the `stat` variable.
+                      raise FlickrApiError(data)
+                    return data
+              </code></pre>
+            </section>
+            <section>
+              <h2><code inline='python'>async</code> wha?</h2>
+              <dl>
+              <dt><code inline='python'>async def</code></dt>
+              <dd>Creates an async function.<br \>Allows the use of the <code inline='python'>async</code> and <code inline='python'>await</code> keywords</dd>
+              <dt><code inline='python'>async for</code></dt>
+              <dd>Like a for loop; but </dd>
+              <dt><code inline='python'>async with</code></dt>
+              <dd></dd>
+            </section>
+            <section>
+              <pre><code inline='python' data-indent data-mark>
+              <mark>async</mark> def download_kitten(flickr, image_folder, photo_id):
+                data = <mark>await</mark> flickr.api_call('flickr.photos.getInfo',
+                                             photo_id=photo_id)
+                sizes = <mark>await</mark> flickr.api_call('flickr.photos.getSizes',
+                                              photo_id=photo_id)
+
+                photo_data = get_photo_data(data)
+                image_url, image_filename = get_image_url_from_sizes(sizes)
+                image_path = image_folder + '/' + image_filename
+                photo_data['image_path'] = image_path
+
+                <mark>async with </mark>flickr.session.get(image_url) as img:
+                  img.raise_for_status()
+                  content = <mark>await</mark> img.read()
+                with open(image_path, 'wb') as file:
+                  file.write(content)
+                return photo_data
+              </code></pre>
+            </section>
+          </section>
+
+
+
+          <section>
+            <section>
+              <h2>Greatful thanks to</h2>
             </section>
             <section>
               <h3>Python libraries</h3>
@@ -258,7 +421,7 @@
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'custom_plugin/kittens_include.js', async: false, condition: function() { return !!document.querySelector( '[data-kittens]' ); } },
+          { src: 'custom_plugin/kittens_include.js', condition: function() { return !!document.querySelector( '[data-kittens]' ); } },
           { src: 'custom_plugin/code_mark.js', condition: function() { return !!document.querySelector( '[data-mark]' ); } },
           { src: 'plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },

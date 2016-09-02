@@ -1,94 +1,94 @@
 {
-  "time": 10.380475,
   "kittens": [
     {
+      "description": "Foster Kittens: Neve, Firn, Shiya, and Batcat\n",
+      "id": 15745379826,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15745379826_d083bc1540_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
       },
+      "owner": {
+        "id": "29638108@N06",
+        "path": "29638108@N06",
+        "path_alias": null,
+        "realname": "Jennifer C.",
+        "username": "www.metaphoricalplatypus.com"
+      },
+      "short_no_scheme_url": "flic.kr/p/pZnbRY",
+      "short_url": "https://flic.kr/p/pZnbRY",
+      "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/15745379826/"
-      },
-      "title": "Kitten",
-      "description": "Foster Kittens: Neve, Firn, Shiya, and Batcat\n",
-      "owner": {
-        "username": "www.metaphoricalplatypus.com",
-        "path": "29638108@N06",
-        "id": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C."
-      },
-      "id": 15745379826,
-      "short_url": "https://flic.kr/p/pZnbRY",
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15745379826_d083bc1540_b.jpg",
-      "short_no_scheme_url": "flic.kr/p/pZnbRY"
+      }
     },
     {
+      "description": "OLYMPUS DIGITAL CAMERA",
+      "id": 9160823116,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
       },
+      "owner": {
+        "id": "29638108@N06",
+        "path": "29638108@N06",
+        "path_alias": null,
+        "realname": "Jennifer C.",
+        "username": "www.metaphoricalplatypus.com"
+      },
+      "short_no_scheme_url": "flic.kr/p/eXvBy9",
+      "short_url": "https://flic.kr/p/eXvBy9",
+      "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/9160823116/"
-      },
-      "title": "Kitten",
-      "description": "OLYMPUS DIGITAL CAMERA",
-      "owner": {
-        "username": "www.metaphoricalplatypus.com",
-        "path": "29638108@N06",
-        "id": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C."
-      },
-      "id": 9160823116,
-      "short_url": "https://flic.kr/p/eXvBy9",
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
-      "short_no_scheme_url": "flic.kr/p/eXvBy9"
+      }
     },
     {
+      "description": "",
+      "id": 15811753760,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15811753760_435a571975_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
       },
+      "owner": {
+        "id": "29638108@N06",
+        "path": "29638108@N06",
+        "path_alias": null,
+        "realname": "Jennifer C.",
+        "username": "www.metaphoricalplatypus.com"
+      },
+      "short_no_scheme_url": "flic.kr/p/q6enw9",
+      "short_url": "https://flic.kr/p/q6enw9",
+      "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
-      },
-      "title": "Kitten",
-      "description": "",
-      "owner": {
-        "username": "www.metaphoricalplatypus.com",
-        "path": "29638108@N06",
-        "id": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C."
-      },
-      "id": 15811753760,
-      "short_url": "https://flic.kr/p/q6enw9",
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15811753760_435a571975_b.jpg",
-      "short_no_scheme_url": "flic.kr/p/q6enw9"
+      }
     },
     {
+      "description": "one of the strays living on our balcony ",
+      "id": 16514598668,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/16514598668_bf5d5b48f6_b.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
       },
+      "owner": {
+        "id": "100326355@N03",
+        "path": "100326355@N03",
+        "path_alias": null,
+        "realname": "",
+        "username": "abimercado"
+      },
+      "short_no_scheme_url": "flic.kr/p/rakCPN",
+      "short_url": "https://flic.kr/p/rakCPN",
+      "title": "kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/100326355@N03/16514598668/"
-      },
-      "title": "kitten",
-      "description": "one of the strays living on our balcony ",
-      "owner": {
-        "username": "abimercado",
-        "path": "100326355@N03",
-        "id": "100326355@N03",
-        "path_alias": null,
-        "realname": ""
-      },
-      "id": 16514598668,
-      "short_url": "https://flic.kr/p/rakCPN",
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/16514598668_bf5d5b48f6_b.jpg",
-      "short_no_scheme_url": "flic.kr/p/rakCPN"
+      }
     }
   ],
-  "per_kitten_time": 2.59511875
+  "per_kitten_time": 3.3388665,
+  "time": 13.355466
 }

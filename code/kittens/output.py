@@ -158,7 +158,7 @@ class KittenWriter():
         with pickle_file.open('wb') as pf:
             pickle.dump(vars, pf)
         with json_file.open('w') as jf:
-            json.dump(vars, jf, indent=2)
+            json.dump(vars, jf, indent=2, sort_keys=True)
         vars['grid'] = 'css'
         vars['inline_style'] = True
         vars['json_location'] = json_file

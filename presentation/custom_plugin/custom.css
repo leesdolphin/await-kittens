@@ -1,4 +1,8 @@
 
+code.hljs-inline {
+  display: inline-block;
+}
+
 footnote {
   font-size: 0.8rem;
   color: #50433C;
@@ -46,11 +50,11 @@ ul.libs a code {
 }
 
 .code-mark.code-mark-mark {
-  background-color: yellow;
+  background-color: #ffff7c;
 }
 
 .code-mark.code-mark-add {
-  background-color: green;
+  background-color: #8aff6d;
 }
 
 .code-mark.code-mark-rm {

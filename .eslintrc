@@ -4,13 +4,17 @@
         "browser": true,
         "node": false
     },
-    "extends": "standard",
-    "ecmaFeatures": {
-      "impliedStrict": true,
-      "jsx": false
+    "parserOptions": {
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": false,
+        "jsx": false
+      },
     },
+
+    "extends": "standard",
     "globals": {
-      "Reveal": false
+      "Reveal": false,
+      "hljs": false
     },
     "rules": {
       "prefer-const": "error",

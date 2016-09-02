@@ -27,7 +27,7 @@
         markSpan.classList.add('code-mark-' + type)
         if (type === 'fragment') {
           markSpan.classList.add('fragment')
-          markSpan.setAttribute('data-fragment-index', fragCounter++)
+          // markSpan.setAttribute('data-fragment-index', fragCounter++)
         }
         element.appendChild(markSpan)
       }
@@ -39,4 +39,23 @@
     }
     element.setAttribute('data-noescape', true)
   })
+  Reveal.addEventListener('ready', updateCode)
+
+  function updateCode () {
+    if (!hljs) {
+      return
+    }
+    forEach(document.querySelectorAll('code[inline]'), function (elm) {
+      const lang = elm.getAttribute('inline')
+      elm.removeAttribute('inline')
+      const classList = map(elm.classList, function (c) { return c })
+      if (classList.indexOf('hljs') === -1) {
+        if (lang && classList.indexOf(lang) === -1) {
+          elm.classList.add(lang)
+        }
+        hljs.highlightBlock(elm)
+      }
+      elm.classList.add('hljs-inline')
+    })
+  }
 })()
