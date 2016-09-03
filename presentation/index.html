@@ -26,11 +26,11 @@
 
     <!-- Printing and PDF exports -->
     <script>
-      var link = document.createElement( 'link' );
+      var link = document.createElement('link');
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
+      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
     <!--[if lt IE 9]>
@@ -39,33 +39,30 @@
   </head>
 
   <body>
-
-    <!--
-    https://www.flickr.com/photos/mediumpanda/6157871473/sizes/l
-
-    -->
-
-
     <div class="reveal">
-      <div class='footer-pmarking' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
+      <div class='footer-marking' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-          <section data-background='img/start_page_kitten.jpg'>
+          <section data-background='img/start_page_kitten.jpg' class="image-slide">
             <h1><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
             <h3 data-dropshadow>Kitten pictures - Asynchronously</h3>
             <p data-dropshadow>
               <small>Lee Symes</small>
             </p>
-            <footnote>Background image: &ldquo;Kitten!&rdquo;(<a href='https://flic.kr/p/ao9GDP'>flic.kr/p/ao9GDP</a>) by <b>Sergey Ivanov</b> is licensed under <span data-cc='by-sa/2.0'></span></footnote>
+            <footnote class='kitten-info'>
+              &ldquo;Kitten!&rdquo;(<a href='https://flic.kr/p/ao9GDP'>flic.kr/p/ao9GDP</a>) by
+              <b><a href='https://www.flickr.com/people/mediumpanda' class='no-colour'>
+                Sergey Ivanov
+              </a></b>
+              <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY SA 2.0</a></span>
+            </footnote>
           </section>
 
           <section>
             <section>
               <h2>About Me</h2>
               <p>
-                Worked at Catalyst for 1 and a half.
-                Written Python, JavaScript, PHP, Perl.
-                Touched GoLang for a bit(it's a nice language - try it)
+                Worked at Catalyst for 1 and a half. Written Python, JavaScript, PHP, Perl. Touched GoLang for a bit(it's a nice language - try it)
               </p>
             </section>
             <section>
@@ -74,16 +71,14 @@
                 I have Depression and Anxiety.
               </p>
               <p>
-                Neither the depression, nor the anxiety have been
-                very useful for writing this talk.
+                Neither the depression, nor the anxiety have been very useful for writing this talk.
               </p>
             </section>
           </section>
 
           <section>
             <section>
-              <h2>Diving in</h2>
-              Without further ado; The code.
+              <h2>Diving in</h2> Without further ado; The code.
             </section>
             <section>
               <h2>Getting <i>all</i> the kittens</h2>
@@ -101,10 +96,7 @@
               </ol>
             </section>
             <section>
-              <h2>Getting <i>all</i> the kittens</h2>
-              So code wise, I've extracted all the parsing into another module
-              to save clutter.
-              Also we are using <i><code>requests</code></i> because it's cool.
+              <h2>Getting <i>all</i> the kittens</h2> So code wise, I've extracted all the parsing into another module to save clutter. Also we are using <i><code>requests</code></i> because it's cool.
             </section>
             <section>
               <h2>Connecting to Flickr</h2>
@@ -173,7 +165,7 @@
                     ])
               </code></pre>
             </section>
-            <section>
+            <section class="image-slide">
               <span data-kittens="v1"></span>
             </section>
           </section>
@@ -247,7 +239,8 @@
               <pre><code class='python' data-indent data-mark>
                 import asyncio
                 import aiohttp
-                image_url = ('https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg')
+                image_url = ('https://c1.staticflickr.com/7/'
+                             '6201/6128762944_72a4e5d2af_o_d.jpg')
 
                 async def my_first_kitten(image_url):
                   <mark>async with</mark> aiohttp.get(image_url) as img:
@@ -258,24 +251,68 @@
 
                 loop = asyncio.get_event_loop()
                 loop.run_until_complete(my_first_kitten(image_url))
-                loop.close()
               </code></pre>
             </section>
-            <section>
-
-              <div class='kitten'><div class='kitten-img'><img src='img/first_async_kitten.jpg' alt='sleepy kitten' /></div><footnote class='kitten-info'>
-                  &ldquo;sleepy kitten&rdquo;(<a href='https://flic.kr/p/akzvGC'>flic.kr/p/akzvGC</a>)
-                  by
-                  <b><a href='https://www.flickr.com/people/bambe1964' class='no-colour'>
-                    bambe1964
-                  </a></b>
-                  <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
-                </footnote></div>
-
+            <section class="image-slide">
+              <img src='img/my_first_async_kitten.jpg' />
+              <footnote class='kitten-info'>
+                &ldquo;Kittens!!&rdquo;(<a href='https://flic.kr/p/9zytcz'>flic.kr/p/9zytcz</a>) by
+                <b><a href='https://www.flickr.com/people/guerson' class='no-colour'>
+                  Alexandra Guerson
+                </a></b>
+                <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY NC ND 2.0</a></span>
+              </footnote>
             </section>
           </section>
           <section>
+            <section>
+              <h2>Running in parallel</h2>
+              <pre><code class='python' data-indent data-mark>
+                import asyncio; import aiohttp
+                image_urls = [
+                  'https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg',
+                  'https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg']
 
+                async def get_kitten(idx, image_url):
+                  async with aiohttp.get(image_url) as img:
+                    img.raise_for_status()
+                    content = await img.read()
+                  open('async_kitten{}.jpg'.format(idx), 'wb').write(content)
+
+                async def async_main():
+                  [res1, res2] = <mark>await asyncio.gather</mark>(
+                    <mark>get_kitten</mark>(1, image_url[0]),
+                    <mark>get_kitten</mark>(2, image_url[1]))
+
+                asyncio.get_event_loop().run_until_complete(async_main)
+              </code></pre>
+            </section>
+            <section class="image-slide image-slide-side-by-side"
+              ><div style='width: 100%;height: 100%;'
+                ><div class='kitten-side-by-side'
+                  ><img src='img/parallel_async_1.jpg' alt='Kitten' />
+                  <footnote class='kitten-info' data-footnote-ref='[1]'>
+                    <span class='kitten-id'>[1] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/pBs6DC'>flic.kr/p/pBs6DC</a>)
+                    by
+                    <b><a href='https://www.flickr.com/people/soumyaroop_chatterjee' class='no-colour'>
+                      Soumyaroop Chatterjee
+                    </a></b>
+                    <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
+                  </footnote>
+                </div
+                ><div class='kitten-side-by-side'
+                  ><img src='img/parallel_async_2.jpg' alt='Kitten' />
+                  <footnote class='kitten-info' data-footnote-ref='[2]'>
+                    <span class='kitten-id'>[2] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/775u3W'>flic.kr/p/775u3W</a>)
+                    by
+                    <b><a href='https://www.flickr.com/people/22254604@N05' class='no-colour'>
+                      Raymond
+                    </a></b>
+                    <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
+                  </footnote>
+                </div>
+              </div>
+            </section>
 
 
 
@@ -310,12 +347,12 @@
             <section>
               <h2><code inline='python'>async</code> wha?</h2>
               <dl>
-              <dt><code inline='python'>async def</code></dt>
-              <dd>Creates an async function.<br \>Allows the use of the <code inline='python'>async</code> and <code inline='python'>await</code> keywords</dd>
-              <dt><code inline='python'>async for</code></dt>
-              <dd>Like a for loop; but </dd>
-              <dt><code inline='python'>async with</code></dt>
-              <dd></dd>
+                <dt><code inline='python'>async def</code></dt>
+                <dd>Creates an async function.<br \>Allows the use of the <code inline='python'>async</code> and <code inline='python'>await</code> keywords</dd>
+                <dt><code inline='python'>async for</code></dt>
+                <dd>Like a for loop; but </dd>
+                <dt><code inline='python'>async with</code></dt>
+                <dd></dd>
             </section>
             <section>
               <pre><code inline='python' data-indent data-mark>
@@ -350,23 +387,19 @@
               <h3>Python libraries</h3>
               <ul class='libs'>
                 <li>
-                  <b><a href='https://pypi.org/project/ago'><code>ago</code></a></b>
-                  by <a href='https://twitter.com/russellbal'><i class="fa fa-twitter" aria-hidden="true"></i>russellbal</a>
+                  <b><a href='https://pypi.org/project/ago'><code>ago</code></a></b> by <a href='https://twitter.com/russellbal'><i class="fa fa-twitter" aria-hidden="true"></i>russellbal</a>
                 </li>
                 <li>
-                  <b><a href='https://pypi.org/project/aiohttp'><code>aiohttp</code></a></b>
-                  by <a href='https://twitter.com/keepsafeeng'><i class="fa fa-twitter" aria-hidden="true"></i>keepsafeeng</a>
+                  <b><a href='https://pypi.org/project/aiohttp'><code>aiohttp</code></a></b> by <a href='https://twitter.com/keepsafeeng'><i class="fa fa-twitter" aria-hidden="true"></i>keepsafeeng</a>
                 </li>
                 <li>
-                  <b><a href='https://pypi.org/project/jinja2'><code>jinja2</code></a></b>
-                  by <a href='https://twitter.com/mitsuhiko'><i class="fa fa-twitter" aria-hidden="true"></i>mitsuhiko</a>
+                  <b><a href='https://pypi.org/project/jinja2'><code>jinja2</code></a></b> by <a href='https://twitter.com/mitsuhiko'><i class="fa fa-twitter" aria-hidden="true"></i>mitsuhiko</a>
                 </li>
                 <li>
-                  <b><a href='https://pypi.org/project/requests'><code>requests</code></a></b>
-                  by <a href='https://github.com/kennethreitz'><i class="fa fa-github" aria-hidden="true"></i>kennethreitz</a>
+                  <b><a href='https://pypi.org/project/requests'><code>requests</code></a></b> by <a href='https://github.com/kennethreitz'><i class="fa fa-github" aria-hidden="true"></i>kennethreitz</a>
                 </li>
               </ul>
-          </section>
+            </section>
 
         </div>
       </div>
@@ -397,7 +430,6 @@
     <script src="js/reveal.js"></script>
 
     <script>
-
       // Full list of configuration options available here:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -417,21 +449,70 @@
         // parallaxBackgroundSize: '2100px 900px',
 
         // Optional libraries used to extend on reveal.js
-        dependencies: [
-          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'custom_plugin/kittens_include.js', condition: function() { return !!document.querySelector( '[data-kittens]' ); } },
-          { src: 'custom_plugin/code_mark.js', condition: function() { return !!document.querySelector( '[data-mark]' ); } },
-          { src: 'plugin/highlight/highlight.js', callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'custom_plugin/dropshadow.js', async: true, condition: function() { return !!document.querySelector( '[data-dropshadow]' ); } },
-          { src: 'custom_plugin/cc-licenses.js', async: false, condition: function() { return !!document.querySelector( '[data-cc]' ); } },
-          { src: 'custom_plugin/footnotes.js', async: true, condition: function() { return !!document.querySelector( 'footnote' ) && document.querySelector( '#footnote-holder' ); } },
-        ]
+        dependencies: [{
+          src: 'lib/js/classList.js',
+          condition: function() {
+            return !document.body.classList;
+          }
+        }, {
+          src: 'plugin/markdown/marked.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        }, {
+          src: 'plugin/markdown/markdown.js',
+          condition: function() {
+            return !!document.querySelector('[data-markdown]');
+          }
+        }, {
+          src: 'custom_plugin/kittens_include.js',
+          condition: function() {
+            return !!document.querySelector('[data-kittens]');
+          }
+        }, {
+          src: 'custom_plugin/code_mark.js',
+          condition: function() {
+            return !!document.querySelector('[data-mark]');
+          }
+        }, {
+          src: 'plugin/highlight/highlight.js',
+          callback: function() {
+            hljs.initHighlightingOnLoad();
+          }
+        }, {
+          src: 'plugin/zoom-js/zoom.js',
+          async: true,
+          condition: function() {
+            return !!document.body.classList;
+          }
+        }, {
+          src: 'plugin/notes/notes.js',
+          async: true,
+          condition: function() {
+            return !!document.body.classList;
+          }
+        }, {
+          src: 'custom_plugin/dropshadow.js',
+          async: true,
+          condition: function() {
+            return !!document.querySelector('[data-dropshadow]');
+          }
+        }, {
+          src: 'custom_plugin/cc-licenses.js',
+          async: false,
+          condition: function() {
+            return !!document.querySelector('[data-cc]');
+          }
+        }, {
+          src: 'custom_plugin/footnotes.js',
+          async: true,
+          condition: function() {
+            return !!document.querySelector('footnote') && document.querySelector('#footnote-holder');
+          }
+        }, ]
       });
     </script>
 
   </body>
+
 </html>

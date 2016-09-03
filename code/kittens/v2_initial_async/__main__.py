@@ -22,8 +22,6 @@ async def async_main():
 def main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(async_main())
-    # Will only run once async_main is finished.
-    loop.close()
 
 if __name__ == '__main__':
     main()

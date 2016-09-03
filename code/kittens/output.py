@@ -60,8 +60,14 @@ def jinja_filter_to_readable_timedelta(time, include_millis=False):
         return ago.human(time, past_tense='{}', future_tense='{}')
     else:
         # We almost never want to see the millis
-        if not include_millis:
-            time = datetime.timedelta(days=time.days, seconds=time.seconds)
+        micros = 0
+        if include_millis is True:
+            micros = time.microseconds
+        elif include_millis:
+            # Round the micros to `include_millis` places.
+            micros = round(time.microseconds, -(6 - include_millis))
+        time = datetime.timedelta(days=time.days, seconds=time.seconds,
+                                  microseconds=micros)
         return ago.human(time, past_tense='{}', future_tense='{}')
 
 
@@ -92,6 +98,9 @@ class KittenWriter():
 
     def add_all(self, photo_list):
         self._photos += photo_list
+
+    def add(self, photo):
+        self._photos.append(photo)
 
     def __enter__(self):
         for item in pathlib.Path(self.image_folder).iterdir():

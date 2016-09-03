@@ -3,6 +3,28 @@ code.hljs-inline {
   display: inline-block;
 }
 
+.reveal .kitten-side-by-side {
+  display: table-cell;
+  position: relative;
+}
+.reveal .kitten-side-by-side img {
+  margin: 0;
+  max-height: none;
+  max-width: 100%;
+}
+.reveal .kitten-side-by-side .footnote-ref {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(200, 200, 200, 0.4);
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  display: block;
+  margin: 0px;
+}
+
 footnote {
   font-size: 0.8rem;
   color: #50433C;
