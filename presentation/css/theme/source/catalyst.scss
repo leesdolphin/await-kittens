@@ -208,6 +208,85 @@ Catalyst themed reveal.js presentation
     font-weight: 700;
     text-rendering: optimizeLegibility;
 }
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Thin.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 100;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-ThinItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 100;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Light.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-LightItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Italic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Medium.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-MediumItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 500;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../lib/font/Roboto-BoldItalic.ttf') format('truetype');
+    font-style: italic;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+}
 
 // Catalyst color variables
 $catRed: #BA2025;
@@ -221,9 +300,9 @@ $catBlue: #5B9AA9;
 $catGreen: #889A3A;
 
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Lato', sans-serif;
+$mainFont: 'Roboto', sans-serif;
 $mainColor: $catBlack;
-$headingFont: 'Lato', sans-serif;
+$headingFont: 'Roboto', sans-serif;
 $headingColor: $catBrown;
 $headingLineHeight: 1em;
 $headingTextShadow: none;
