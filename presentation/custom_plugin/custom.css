@@ -1,3 +1,6 @@
+.reveal pre code {
+    max-height: 475px;
+}
 
 code.hljs-inline {
   display: inline-block;
