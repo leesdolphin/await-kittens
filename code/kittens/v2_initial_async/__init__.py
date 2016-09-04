@@ -10,14 +10,14 @@ class Flickr():
 
   async def api_call(self, api_method, **api_params):
     api_params.update(method=api_method, **self.default_params)
-    async with self.session.get(
-        'https://api.flickr.com/services/rest/',
-        params=api_params) as r:
+    async with self.session.get('https://api.flickr.com/services/rest/',
+                                params=api_params) as r:
       r.raise_for_status()
       data = await r.json()
     if data.get('stat') != 'ok':
-        # Flickr indicates failure by setting the `stat` variable.
-        raise FlickrApiError(data)
+      # Flickr indicates failure by setting the `stat` variable.
+      raise FlickrApiError(data)
+    print('api_call', api_method)
     return data
 
 

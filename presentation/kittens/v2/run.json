@@ -1,25 +1,25 @@
 {
   "kittens": [
     {
-      "description": "Foster Kittens: Neve, Firn, Shiya, and Batcat\n",
-      "id": 15745379826,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15745379826_d083bc1540_b.jpg",
+      "description": "",
+      "id": 4671107278,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/4671107278_4eae936da8_b.jpg",
       "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
+        "name": "Attribution-NonCommercial License",
+        "url": "https://creativecommons.org/licenses/by-nc/2.0/"
       },
       "owner": {
-        "id": "29638108@N06",
-        "path": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C.",
-        "username": "www.metaphoricalplatypus.com"
+        "id": "41201087@N00",
+        "path": "nicolekelly",
+        "path_alias": "nicolekelly",
+        "realname": "",
+        "username": "Nicole.Kelly"
       },
-      "short_no_scheme_url": "flic.kr/p/pZnbRY",
-      "short_url": "https://flic.kr/p/pZnbRY",
+      "short_no_scheme_url": "flic.kr/p/87LDso",
+      "short_url": "https://flic.kr/p/87LDso",
       "title": "Kitten",
       "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/15745379826/"
+        "photopage": "https://www.flickr.com/photos/nicolekelly/4671107278/"
       }
     },
     {
@@ -67,28 +67,28 @@
       }
     },
     {
-      "description": "one of the strays living on our balcony ",
-      "id": 16514598668,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/16514598668_bf5d5b48f6_b.jpg",
+      "description": "",
+      "id": 8522145980,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/8522145980_7d22ff33e3_h.jpg",
       "license": {
-        "name": "Attribution-NonCommercial-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
+        "name": "Attribution License",
+        "url": "https://creativecommons.org/licenses/by/2.0/"
       },
       "owner": {
-        "id": "100326355@N03",
-        "path": "100326355@N03",
-        "path_alias": null,
-        "realname": "",
-        "username": "abimercado"
+        "id": "44124483743@N01",
+        "path": "brownpau",
+        "path_alias": "brownpau",
+        "realname": "brownpau",
+        "username": "brownpau"
       },
-      "short_no_scheme_url": "flic.kr/p/rakCPN",
-      "short_url": "https://flic.kr/p/rakCPN",
-      "title": "kitten",
+      "short_no_scheme_url": "flic.kr/p/dZ5e6o",
+      "short_url": "https://flic.kr/p/dZ5e6o",
+      "title": "Amelia Kitten",
       "urls": {
-        "photopage": "https://www.flickr.com/photos/100326355@N03/16514598668/"
+        "photopage": "https://www.flickr.com/photos/brownpau/8522145980/"
       }
     }
   ],
-  "per_kitten_time": 9.5530885,
-  "time": 38.212354
+  "per_kitten_time": 4.5529405,
+  "time": 18.211762
 }

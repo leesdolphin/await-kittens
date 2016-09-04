@@ -20,7 +20,12 @@
       Array.prototype.push.apply(all, footnoteSlides[id])
     }
 
-    forEach(Reveal.getCurrentSlide().getElementsByTagName('footnote'), function (elm) {
+    forEach(Reveal.getSlide(slide.h, slide.v).getElementsByTagName('footnote'), function (elm) {
+      if (all.indexOf(elm) === -1) {
+        all.push(elm)
+      }
+    })
+    forEach(Reveal.getSlideBackground(slide.h, slide.v).getElementsByTagName('footnote'), function (elm) {
       if (all.indexOf(elm) === -1) {
         all.push(elm)
       }
@@ -109,6 +114,11 @@
     })
     Reveal.layout()
   }
+  ['ready', 'slidechanged', 'overviewshown', 'overviewhidden', 'paused', 'resumed'].forEach(function(evt) {
+    Reveal.addEventListener(evt, function (event) {
+      updateSlides()
+    })
+  })
   Reveal.addEventListener('slidechanged', function (event) {
     updateSlides()
   })

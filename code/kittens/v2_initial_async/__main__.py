@@ -7,16 +7,17 @@ from . import Flickr, download_kitten
 
 async def async_main():
     with aiohttp.ClientSession() as session:
-        flickr = Flickr(session,
-                        open('.flickr-key').read().strip())
-        with KittenWriter('v2') as writer:
-            folder = writer.image_folder
-            writer.add_all([
-                await download_kitten(flickr, folder, '15745379826'),
-                await download_kitten(flickr, folder, '9160823116'),
-                await download_kitten(flickr, folder, '15811753760'),
-                await download_kitten(flickr, folder, '16514598668')
-            ])
+      flickr = Flickr(session,
+                      open('.flickr-key').read().strip())
+      with KittenWriter('v2') as writer:
+        folder = writer.image_folder
+        kitten_dls = [
+          download_kitten(flickr, folder, kitten_id)
+          for kitten_id in ['4671107278', '9160823116',
+                            '15811753760', '8522145980']
+        ]
+        kitten_data = await asyncio.gather(*kitten_dls)
+        writer.add_all(kitten_data)
 
 
 def main():

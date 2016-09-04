@@ -169,7 +169,6 @@
               <span data-kittens="v1"></span>
             </section>
           </section>
-
           <section>
             <section>
               <h2>Going faster </h2>
@@ -218,20 +217,23 @@
                 import asyncio
 
                 <mark>async def</mark> print_hello_world(person):
+                  await asyncio.sleep(1)
                   print("Preparing to say hello to", person)
-                  await asyncio.sleep(5)
+                  await asyncio.sleep(2)
                   print("Hello", person)
+                  await asyncio.sleep(1)
 
                 loop = asyncio.get_event_loop()
                 print("I'm going to be polite")
                 loop.run_until_complete(<mark>print_hello_world</mark>("Kiwi PyCon"))
-                # Will only run once async_main is finished.
-                loop.close()
+                # Will only run once print_hello_world is finished.
+                print("Bye")
               </code></pre>
               <pre class='fragment'><code class='text' data-indent data-mark>
                 I'm going to be polite
-                Preparing to say hello to Kiwi PyCon
+                <fragment>Preparing to say hello to Kiwi PyCon</fragment>
                 <fragment>Hello Kiwi PyCon</fragment>
+                <fragment>Bye</fragment>
               </code></pre>
             </section>
             <section>
@@ -239,8 +241,6 @@
               <pre><code class='python' data-indent data-mark>
                 import asyncio
                 import aiohttp
-                image_url = ('https://c1.staticflickr.com/7/'
-                             '6201/6128762944_72a4e5d2af_o_d.jpg')
 
                 async def my_first_kitten(image_url):
                   <mark>async with</mark> aiohttp.get(image_url) as img:
@@ -249,12 +249,21 @@
                   with open('first_async_kitten.jpg', 'wb') as file:
                     file.write(content)
 
+                async def async_main():
+                  await my_first_kitten('https://c1.staticflickr.com/7/'
+                                        '6201/6128762944_72a4e5d2af_o_d.jpg')
+
                 loop = asyncio.get_event_loop()
-                loop.run_until_complete(my_first_kitten(image_url))
+                loop.run_until_complete(async_main())
               </code></pre>
             </section>
             <section class="image-slide">
               <img src='img/my_first_async_kitten.jpg' />
+              <span class='image-overlay fragment'>
+                <span>
+                  Time taken: 10.5 seconds
+                </span>
+              </span>
               <footnote class='kitten-info'>
                 &ldquo;Kittens!!&rdquo;(<a href='https://flic.kr/p/9zytcz'>flic.kr/p/9zytcz</a>) by
                 <b><a href='https://www.flickr.com/people/guerson' class='no-colour'>
@@ -268,29 +277,38 @@
             <section>
               <h2>Running in parallel</h2>
               <pre><code class='python' data-indent data-mark>
-                import asyncio; import aiohttp
-                image_urls = [
-                  'https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg',
-                  'https://c1.staticflickr.com/7/6201/6128762944_72a4e5d2af_o_d.jpg']
+                import asyncio
+                import aiohttp
 
-                async def get_kitten(idx, image_url):
+                async def get_kitten(image_url):
                   async with aiohttp.get(image_url) as img:
                     img.raise_for_status()
                     content = await img.read()
-                  open('async_kitten{}.jpg'.format(idx), 'wb').write(content)
+                  with open('parallel_kitten_{}.jpg'.format(idx), 'wb') as file:
+                    file.write(content)
 
                 async def async_main():
-                  [res1, res2] = <mark>await asyncio.gather</mark>(
-                    <mark>get_kitten</mark>(1, image_url[0]),
-                    <mark>get_kitten</mark>(2, image_url[1]))
+                  (_, _) = <mark>await asyncio.gather</mark>(
+                    <mark>get_kitten</mark>(1, 'https://c2.staticflickr.com/6/'
+                                  '5601/15497374938_7239eb4d9f_k.jpg'),
+                    <mark>get_kitten</mark>(2, 'https://c2.staticflickr.com/4/'
+                                  '3288/4006914394_bcd2fe6539_o.jpg')
+                  )
 
-                asyncio.get_event_loop().run_until_complete(async_main)
+                loop = asyncio.get_event_loop()
+                loop.run_until_complete(async_main)
               </code></pre>
             </section>
-            <section class="image-slide image-slide-side-by-side"
-              ><div style='width: 100%;height: 100%;'
-                ><div class='kitten-side-by-side'
-                  ><img src='img/parallel_async_1.jpg' alt='Kitten' />
+            <section class="image-slide image-slide-side-by-side">
+              <span class='image-overlay fragment'>
+                <span>
+                  Downloading 2 took 14.4 seconds<br />
+                  <span style='font-size:70%'>Downloading 1 took 10.5 seconds</span>
+                </span>
+              </span>
+              <div style='width: 100%;height: 100%;'>
+                <div class='kitten-side-by-side'>
+                  <img src='img/parallel_async_1.jpg' alt='Kitten' />
                   <footnote class='kitten-info' data-footnote-ref='[1]'>
                     <span class='kitten-id'>[1] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/pBs6DC'>flic.kr/p/pBs6DC</a>)
                     by
@@ -299,9 +317,9 @@
                     </a></b>
                     <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
                   </footnote>
-                </div
-                ><div class='kitten-side-by-side'
-                  ><img src='img/parallel_async_2.jpg' alt='Kitten' />
+                </div>
+                <div class='kitten-side-by-side'>
+                  <img src='img/parallel_async_2.jpg' alt='Kitten' />
                   <footnote class='kitten-info' data-footnote-ref='[2]'>
                     <span class='kitten-id'>[2] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/775u3W'>flic.kr/p/775u3W</a>)
                     by
@@ -316,50 +334,83 @@
           </section>
           <section>
             <section>
+              <h2>The old order</h2>
+              <ol>
+                <li class='fragment'>
+                  API Call: <code>getInfo</code>
+                </li>
+                <li class='fragment'>
+                  API Call: <code>getSizes</code>
+                </li>
+                <li class='fragment'>
+                  Download Kitten Picture
+                </li>
+                <li class='fragment'>
+                  Rinse and repeat for the next kitten
+                </li>
+              </ol>
+            </section>
+            <section>
+              <h2>The new order</h2>
+              <div class='side-by-side-list fragment' data-fragment-index='1'>
+                <div>
+                  <ol>
+                    <li class='fragment' data-fragment-index='1'>
+                      API Call: <code>getInfo</code>
+                    </li>
+                    <li class='fragment' data-fragment-index='2'>
+                      API Call: <code>getSizes</code>
+                    </li>
+                    <li class='fragment' data-fragment-index='3'>
+                      Download Kitten Picture
+                    </li>
+                  </ol>
+                </div>
+                <div>
+                  <ol>
+                    <li class='fragment' data-fragment-index='1'>
+                      API Call: <code>getInfo</code>
+                    </li>
+                    <li class='fragment' data-fragment-index='2'>
+                      API Call: <code>getSizes</code>
+                    </li>
+                    <li class='fragment' data-fragment-index='3'>
+                      Download Kitten Picture
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </section>
+            <section>
               <pre><code inline='python' data-indent data-mark>
-                class Flickr():
-                  def __init__(self, aio_session, api_key):
-                    self.session = aio_session
-                    self.default_params = dict(format='json', nojsoncallback=1,
-                                               api_key=api_key)
-
-                  <mark>async</mark> def api_call(self, api_method, **api_params):
-                    api_params.update(method=api_method, **self.default_params)
-                    <mark>async with</mark> self.session.get(
-                        'https://api.flickr.com/services/rest/',
-                        params=api_params) as r:
-                      r.raise_for_status()
-                      data = <mark>await</mark> r.json()
-                    if data.get('stat') != 'ok':
+              class Flickr:
+                ...
+                <mark>async</mark> def api_call(self, api_method, **api_params):
+                  api_params.update(method=api_method, **self.default_params)
+                  async with self.session.get(
+                      'https://api.flickr.com/services/rest/',
+                      params=api_params) as r:
+                    r.raise_for_status()
+                    data = <mark>await r.json()</mark>
+                  if data.get('stat') != 'ok':
                       # Flickr indicates failure by setting the `stat` variable.
                       raise FlickrApiError(data)
-                    return data
+                  return data
               </code></pre>
             </section>
             <section>
-              <h2><code inline='python'>async</code> wha?</h2>
-              <dl>
-                <dt><code inline='python'>async def</code></dt>
-                <dd>Creates an async function.<br \>Allows the use of the <code inline='python'>async</code> and <code inline='python'>await</code> keywords</dd>
-                <dt><code inline='python'>async for</code></dt>
-                <dd>Like a for loop; but </dd>
-                <dt><code inline='python'>async with</code></dt>
-                <dd></dd>
-            </section>
-            <section>
               <pre><code inline='python' data-indent data-mark>
-              <mark>async</mark> def download_kitten(flickr, image_folder, photo_id):
+              async def download_kitten(flickr, image_folder, photo_id):
                 data = <mark>await</mark> flickr.api_call('flickr.photos.getInfo',
                                              photo_id=photo_id)
                 sizes = <mark>await</mark> flickr.api_call('flickr.photos.getSizes',
-                                              photo_id=photo_id)
-
+                                             photo_id=photo_id)
                 photo_data = get_photo_data(data)
                 image_url, image_filename = get_image_url_from_sizes(sizes)
                 image_path = image_folder + '/' + image_filename
                 photo_data['image_path'] = image_path
 
-                <mark>async with </mark>flickr.session.get(image_url) as img:
+                <mark>async with</mark> flickr.session.get(image_url) as img:
                   img.raise_for_status()
                   content = <mark>await</mark> img.read()
                 with open(image_path, 'wb') as file:
@@ -367,8 +418,95 @@
                 return photo_data
               </code></pre>
             </section>
+            <section class="image-slide" data-background-image= >
+              <span class='image-overlay fragment' data-fragment-index='1'>
+                <div>
+                  <span class='fragment' data-fragment-index='1'>
+                    Downloading synchronously took <span data-kitten-data='v1:time'></span>
+                  </span>
+                  <span class='fragment' data-fragment-index='2'>
+                    Downloading <b>asynchronously</b> took <span data-kitten-data='v2:time'></span>
+                  </span>
+                </div>
+              </span>
+              <span data-kittens="v2:no-time"></span>
+            </section>
           </section>
-
+          <section>
+            <section>
+              <h2>Even faster?</h2>
+            </section>
+            <section>
+              <h2>The newer order</h2>
+              <div class='side-by-side-list'>
+                <ol>
+                  <li>
+                    API Call: <code>getInfo</code>
+                  </li>
+                  <li>
+                    API Call: <code>getSizes</code>
+                  </li>
+                  <li>
+                    Download Kitten Picture
+                  </li>
+                </ol>
+                <ol>
+                  <li>
+                    API Call: <code>getInfo</code>
+                  </li>
+                  <li>
+                    API Call: <code>getSizes</code>
+                  </li>
+                  <li>
+                    Download Kitten Picture
+                  </li>
+                </ol>
+              </div>
+            </section>
+            <section>
+              <h2>The new-er order</h2>
+              <div class='side-by-side-list fragment' data-fragment-index='1'>
+                <div class='side-by-side-list'>
+                  <div>
+                    <ol>
+                      <li class='fragment' data-fragment-index='1'>
+                        API Call: <code>getInfo</code>
+                      </li>
+                    </ol>
+                  </div>
+                  <div>
+                    <ol>
+                      <li class='fragment' data-fragment-index='1'>
+                        API Call: <code>getSizes</code>
+                      </li>
+                      <li class='fragment' data-fragment-index='2'>
+                        Download Kitten Picture
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+                <div class='side-by-side-list'>
+                  <div>
+                    <ol>
+                      <li class='fragment' data-fragment-index='1'>
+                        API Call: <code>getInfo</code>
+                      </li>
+                    </ol>
+                  </div>
+                  <div>
+                    <ol>
+                      <li class='fragment' data-fragment-index='1'>
+                        API Call: <code>getSizes</code>
+                      </li>
+                      <li class='fragment' data-fragment-index='2'>
+                        Download Kitten Picture
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
 
 
           <section>
@@ -458,6 +596,11 @@
           }
         }, {
           src: 'custom_plugin/kittens_include.js',
+          condition: function() {
+            return !!document.querySelector('[data-kittens]');
+          }
+        }, {
+          src: 'custom_plugin/kitten_bg.js',
           condition: function() {
             return !!document.querySelector('[data-kittens]');
           }

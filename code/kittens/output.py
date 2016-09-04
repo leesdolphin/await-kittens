@@ -113,28 +113,47 @@ class KittenWriter():
         self.write_out()
 
     def write_out(self, use_pickle=False):
-        vars = self.create_jinja_vars(use_pickle=use_pickle)
+        jvars = self.create_jinja_vars(use_pickle=use_pickle)
         env = create_jinja_env()
+        self.write_per_kitten_templates(jvars, env)
+        self.write_kitten_dir_templates(jvars, env)
+        self.write_slide_templates(jvars, env)
+
+    def write_kitten_dir_templates(self, jvars, env):
         style_template = env.get_template('style.css')
         style_location = KITTENS_DIR / 'stylesheet.css'
         with style_location.open('w') as target:
-            style_template.stream(vars).dump(target)
+            style_template.stream(jvars).dump(target)
         template = env.get_template('index.html')
-        target_file = KITTENS_DIR.joinpath('{}/index.html'.format(self._version))
-        vars['output_location'] = target_file.parent
+        target_file = KITTENS_DIR.joinpath(
+            '{}/index.html'.format(self._version))
+        jvars['output_location'] = target_file.parent
         with target_file.open('w') as target:
-            template.stream(vars).dump(target)
+            template.stream(jvars).dump(target)
 
+    def write_slide_templates(self, jvars, env):
         template = env.get_template('slide_inc.css')
         target_file = KITTENS_DIR / 'stylesheet.css'
-        vars['output_location'] = target_file.parent
+        jvars['output_location'] = target_file.parent
         with target_file.open('w') as target:
-            template.stream(vars).dump(target)
+            template.stream(jvars).dump(target)
         template = env.get_template('slide_inc.html')
-        target_file = PRESENTATION_DIR.joinpath('kittens_{}.html'.format(self._version))
-        vars['output_location'] = target_file.parent
+        target_file = PRESENTATION_DIR.joinpath(
+            'kittens_{}.html'.format(self._version))
+        jvars['output_location'] = target_file.parent
         with target_file.open('w') as target:
-            template.stream(vars).dump(target)
+            template.stream(jvars).dump(target)
+
+    def write_per_kitten_templates(self, jvars, env):
+        template = env.get_template('kitten.html')
+        target_dir = KITTENS_DIR / 'individuals'
+        target_dir.mkdir(parents=True, exist_ok=True)
+        for kitten in jvars['kittens']:
+          kvars = dict(output_location=PRESENTATION_DIR, kitten=kitten)
+          print(kitten)
+          target_file = target_dir / '{id}.html'.format_map(kitten)
+          with target_file.open('w') as target:
+              template.stream(kvars).dump(target)
 
     def create_jinja_vars(self, use_pickle=False, use_json=False):
         image_folder = pathlib.Path(self.image_folder)

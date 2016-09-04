@@ -7,7 +7,7 @@
   }
   forEach(document.querySelectorAll('[data-mark]'), function (element) {
     let fragCounter = 1
-    const re = /<\/?(mark|add|rm|fragment)>(.*?)<\/\1>/gim
+    const re = /<\/?(mark|add|rm|fragment)>([^]*?)<\/\1>/gmi
     const str = element.innerHTML
     let lastEnd = 0
     element.innerHTML = ''

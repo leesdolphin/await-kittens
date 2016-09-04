@@ -1,37 +1,68 @@
-.reveal pre code {
-    max-height: 475px;
-}
-
-code.hljs-inline {
-  display: inline-block;
-}
-
-.reveal .kitten-side-by-side {
-  display: table-cell;
-  position: relative;
-}
-.reveal .kitten-side-by-side img {
-  margin: 0;
-  max-height: none;
-  max-width: 100%;
-}
-.reveal .kitten-side-by-side .footnote-ref {
+.reveal .kitten-pinwheel .footnote-ref, .reveal .kitten-side-by-side .footnote-ref, .backgrounds > .slide-background.present .bg-animated-kitten .footnote-ref, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-kitten .footnote-ref {
   position: absolute;
-  left: 0;
-  top: 0;
   background-color: rgba(200, 200, 200, 0.4);
   padding: 5px;
   text-align: center;
   font-size: 16px;
   border: none;
   display: block;
-  margin: 0px;
-}
+  margin: 0px; }
+
+.reveal section pre code {
+  max-height: 475px; }
+  .reveal section pre code .code-mark.code-mark-mark {
+    background-color: #ffff7c; }
+  .reveal section pre code .code-mark.code-mark-add {
+    background-color: #8aff6d; }
+  .reveal section pre code .code-mark.code-mark-rm {
+    background-color: red; }
+.reveal section code.hljs-inline {
+  display: inline-block; }
+.reveal section .image-overlay {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20; }
+  .reveal section .image-overlay > * {
+    background-color: white;
+    align-self: center;
+    padding: 0 .3em;
+    display: block; }
+.reveal section .side-by-side-list {
+  display: flex;
+  max-width: 100%;
+  justify-content: center;
+  align-items: baseline; }
+  .reveal section .side-by-side-list > * {
+    align-self: flex-start;
+    padding: 0.1em 0.3em;
+    border-right: 2px solid grey;
+    border-left: 2px solid grey; }
+    .reveal section .side-by-side-list > *:first-child {
+      padding-left: 0px;
+      border-left: 0px; }
+    .reveal section .side-by-side-list > *:last-child {
+      padding-right: 0px;
+      border-right: 0px; }
+.reveal section .kitten-side-by-side {
+  display: table-cell;
+  position: relative; }
+  .reveal section .kitten-side-by-side img {
+    margin: 0;
+    max-height: none;
+    max-width: 100%; }
+.reveal .kitten-side-by-side .footnote-ref {
+  left: 0;
+  top: 0; }
 
 footnote {
   font-size: 0.8rem;
-  color: #50433C;
-}
+  color: #50433C; }
 
 .footer-inner-footnote {
   position: absolute;
@@ -41,47 +72,58 @@ footnote {
   height: 100%;
   display: flex;
   align-items: flex-end;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 #footnote-holder {
   font-size: 15pt;
   margin-top: auto;
   margin-bottom: auto;
-  margin-left: .5rem;
-}
-#footnote-holder > * {
-  display: block;
-  opacity: 100%;
-  transition: opacity .5s;
-}
+  margin-left: .5rem; }
+  #footnote-holder > * {
+    display: block;
+    opacity: 1;
+    transition: opacity .5s; }
+    #footnote-holder > *.hidden {
+      opacity: 0;
+      transition: opacity .5s;
+      transition: height .5s; }
+  #footnote-holder footnote {
+    font-size: inherit; }
 
-#footnote-holder > *.hidden {
-  opacity: 0;
-  transition: opacity .5s;
-}
-
-#footnote-holder footnote {
-  font-size: inherit;
-}
-
-ul.libs .fa, ul.libs .fa {
+ul.libs .fa {
   margin-left: 0.2rem;
-  margin-right: 0.1rem;
-}
-
+  margin-right: 0.1rem; }
 ul.libs a code {
-  margin-right: 0.2rem;
-}
+  margin-right: 0.2rem; }
 
-.code-mark.code-mark-mark {
-  background-color: #ffff7c;
-}
+.backgrounds .bg-animated-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  background-color: transparent;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0px;
+  top: 0px; }
+.backgrounds > .slide-background.present .bg-animated-img, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-img {
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-out; }
+  .backgrounds > .slide-background.present .bg-animated-img.bg-current, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-img.bg-current {
+    opacity: 1;
+    visibility: visible; }
+  .backgrounds > .slide-background.present .bg-animated-img.bg-past, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-img.bg-past {
+    opacity: 0;
+    visibility: visible; }
+  .backgrounds > .slide-background.present .bg-animated-img.bg-future, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-img.bg-future {
+    opacity: 0;
+    visibility: hidden; }
+.backgrounds > .slide-background.present .bg-animated-kitten .footnote-ref, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-kitten .footnote-ref {
+  left: 1em;
+  top: 1em;
+  font-size: 24px; }
 
-.code-mark.code-mark-add {
-  background-color: #8aff6d;
-}
-
-.code-mark.code-mark-rm {
-  background-color: red;
-}
+/*# sourceMappingURL=custom.css.map */

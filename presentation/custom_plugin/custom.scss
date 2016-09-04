@@ -1,0 +1,181 @@
+
+
+%footnote-ref{
+  position: absolute;
+  background-color: rgba(200, 200, 200, 0.4);
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  display: block;
+  margin: 0px;
+}
+
+
+.reveal {
+  section {
+    pre code {
+      max-height: 475px;
+      .code-mark.code-mark-mark {
+        background-color: #ffff7c;
+      }
+      .code-mark.code-mark-add {
+        background-color: #8aff6d;
+      }
+      .code-mark.code-mark-rm {
+        background-color: red;
+      }
+    }
+
+    code.hljs-inline {
+      display: inline-block;
+    }
+
+    .image-overlay {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      >* {
+        background-color: white;
+        align-self: center;
+        padding: 0 .3em;
+        display: block;
+      }
+    }
+    .side-by-side-list {
+      display: flex;
+      max-width: 100%;
+      justify-content: center;
+      align-items: baseline;
+      >* {
+        align-self: flex-start;
+        padding: 0.1em 0.3em;
+        border-right: 2px solid grey;
+        border-left: 2px solid grey;
+        &:first-child {
+          padding-left: 0px;
+          border-left: 0px
+        }
+        &:last-child {
+          padding-right: 0px;
+          border-right: 0px;
+        }
+      }
+    }
+
+    .kitten-side-by-side {
+      display: table-cell;
+      position: relative;
+      img {
+        margin: 0;
+        max-height: none;
+        max-width: 100%;
+      }
+    }
+  }
+  .kitten-pinwheel .footnote-ref {
+    @extend %footnote-ref;
+  }
+  .kitten-side-by-side .footnote-ref {
+    @extend %footnote-ref;
+    left: 0;
+    top: 0;
+  }
+}
+
+
+footnote {
+  font-size: 0.8rem;
+  color: #50433C;
+}
+
+.footer-inner-footnote {
+  position: absolute;
+  right: 430px;
+  padding: 1px 10px;
+  left: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+#footnote-holder {
+  font-size: 15pt;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: .5rem;
+  > * {
+    display: block;
+    opacity: 1;
+    transition: opacity .5s;
+    &.hidden {
+      opacity: 0;
+      transition: opacity .5s;
+      transition: height .5s;
+    }
+  }
+  footnote {
+    font-size: inherit;
+  }
+}
+
+ul.libs {
+  .fa {
+    margin-left: 0.2rem;
+    margin-right: 0.1rem;
+  }
+  a code {
+    margin-right: 0.2rem;
+  }
+}
+
+
+.backgrounds {
+  .bg-animated-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0px;
+    top: 0px;
+  }
+  >.slide-background.present, >.slide-background.stack.present>.slide-background.present {
+    .bg-animated-img {
+      transition-property: opacity;
+      transition-duration: 0.5s;
+      transition-timing-function: ease-out;
+      &.bg-current {
+        opacity: 1;
+        visibility: visible;
+      }
+      &.bg-past {
+        opacity: 0;
+        visibility: visible;
+      }
+      &.bg-future {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    .bg-animated-kitten {
+      .footnote-ref {
+        @extend %footnote-ref;
+        left: 1em;
+        top: 1em;
+        font-size: 24px;
+      }
+    }
+  }
+}
