@@ -1,132 +1,105 @@
-(function () {
-  const footnotePlaceholders = {}
-  const footnoteEventListeners = {}
-  const footnoteSlides = {}
-  let num = 0
-  const getId = (function () {
-    let num = 0
-    return function () {
-      const idx = Reveal.getIndices()
-      const slide = 'slide' + idx.h + ':' + idx.v + ':' + (idx.f || '?')
-      return slide + ' -- ' + (num++)
-    }
-  })()
+const Footnotes = (function () {
+  function getFootnoteId (slideIndices, footnoteNum) {
+    return getSlideId(slideIndices) + '-' + footnoteNum
+  }
+  function getSlideId (slideIndices) {
+    return 'slide' + slideIndices.h + '-' + slideIndices.v
+  }
 
-  const getAllSlideFootnotes = function (slide) {
-    slide = slide || Reveal.getIndices()
-    const id = 'slide' + slide.h + ':' + slide.v
+  function getAllSlideFootnotes (slideIndices) {
+    const indices = slideIndices || Reveal.getIndices()
     const all = []
-    if (footnoteSlides[id]) {
-      Array.prototype.push.apply(all, footnoteSlides[id])
+    const bg = Reveal.getSlideBackground(indices.h, indices.v)
+    if (bg) {
+      _forEach(bg.getElementsByTagName('footnote'), function (elm) {
+        all.push(elm)
+      })
     }
-
-    forEach(Reveal.getSlide(slide.h, slide.v).getElementsByTagName('footnote'), function (elm) {
-      if (all.indexOf(elm) === -1) {
-        all.push(elm)
-      }
+    _forEach(Reveal.getSlide(indices.h, indices.v).getElementsByTagName('footnote'), function (elm) {
+      all.push(elm)
     })
-    forEach(Reveal.getSlideBackground(slide.h, slide.v).getElementsByTagName('footnote'), function (elm) {
-      if (all.indexOf(elm) === -1) {
-        all.push(elm)
-      }
-    })
-    footnoteSlides[id] = all
     return all
   }
 
-  const forEach = function (arr, fn) {
-    Array.prototype.forEach.call(arr, fn)
+  function renumberSlide (slideOrIdxes, applyFn) {
+    let slide
+    let indices
+    if (slideOrIdxes) {
+      try {
+        document.contains(slideOrIdxes)
+        slide = slideOrIdxes
+        indices = Reveal.getIndices(slide)
+      } catch (e) {
+        indices = slideOrIdxes
+        slide = Reveal.getSlide(indices.h, indices.v)
+      }
+    } else {
+      slide = Reveal.getCurrentSlide()
+      indices = Reveal.getIndices()
+    }
+    returnAllFootnotes(document.querySelector('#footnote-holder'))
+    const allFootnotes = getAllSlideFootnotes(indices)
+    if (allFootnotes.length === 1) {
+      applyFn(allFootnotes[0], -1)
+    } else {
+      allFootnotes.forEach(applyFn)
+    }
+    updateSlides()
   }
 
-  function rmNow (footnote) {
-    const footnoteId = footnote.getAttribute('data-footnote-id')
-    if (footnoteEventListeners[footnoteId]) {
-      footnote.removeEventListener('transitionend', footnoteEventListeners[footnoteId].cb, {once: true, passive: true})
-      delete footnoteEventListeners[footnoteId]
-    }
-    footnote.removeAttribute('data-footnote-removing')
-    footnote.remove()
-    if (footnoteId) {
-      const placeholder = footnotePlaceholders[footnoteId]
-      if (placeholder.parentNode) {
-        const parent = placeholder.parentNode
-        parent.replaceChild(footnote, placeholder)
-      }
-      placeholder.remove()
-    }
-  }
-
-  const remCb = (function () {
-    return function (footnote) {
-      if (footnote.tagName !== 'FOOTNOTE') {
-        footnote.remove()
-        return
-      }
-      const footnoteId = footnote.getAttribute('data-footnote-id')
-      if (footnoteEventListeners[footnoteId]) {
-        if (footnote.getAttribute('data-footnote-removing') === footnoteEventListeners[footnoteId].id) {
-          return
-        } else {
-          footnote.removeEventListener('transitionend', footnoteEventListeners[footnoteId].cb, {once: true, passive: true})
-          delete footnoteEventListeners[footnoteId]
+  function returnAllFootnotes (holder) {
+    while (holder.firstChild) {
+      const footnote = holder.firstChild
+      if (footnote.hasAttribute('data-footnote-id')) {
+        const footnoteId = footnote.getAttribute('data-footnote-id')
+        const placeholder = document.getElementById('footnote-placeholder-' + footnoteId)
+        if (placeholder) {
+          placeholder.parentNode.replaceChild(footnote, placeholder)
+          continue
         }
       }
-      const rmNum = 'rmNum - ' + (num++)
-      footnote.setAttribute('data-footnote-removing', rmNum)
-      footnoteEventListeners[footnoteId] = {id: rmNum, cb: rm}
-      footnote.addEventListener('transitionend', rm, {once: true, passive: true})
-      footnote.classList.add('hidden')
-      function rm () {
-        rmNow(footnote)
-      }
+      holder.removeChild(footnote)
     }
-  })()
+  }
+
+  function distributeFootnotesForSlide (slideIndices, holder) {
+    getAllSlideFootnotes(slideIndices).forEach(function (footnote, idx) {
+      const footnoteId = getFootnoteId(slideIndices, idx)
+      const fnId = 'footnote-' + footnoteId
+      const plId = 'footnote-placeholder-' + footnoteId
+      footnote.id = fnId
+      footnote.setAttribute('data-footnote-id', footnoteId)
+      const placeholder = document.getElementById(plId) || document.createElement('span')
+      placeholder.setAttribute('data-placeholder-for', footnoteId)
+      placeholder.id = plId
+      const footnoteRef = footnote.getAttribute('data-footnote-ref')
+      if (footnoteRef) {
+        placeholder.classList.add('footnote-ref')
+        placeholder.innerText = footnoteRef
+        placeholder.style.display = ''
+      } else {
+        placeholder.classList.remove('footnote-ref')
+        placeholder.innerText = ''
+        placeholder.style.display = 'none'
+      }
+      footnote.parentNode.replaceChild(placeholder, footnote)
+      holder.appendChild(footnote)
+    })
+  }
 
   function updateSlides () {
     const holder = document.querySelector('#footnote-holder')
-    forEach(holder.children, remCb)
-    getAllSlideFootnotes().forEach(function (footnote) {
-      footnote.removeAttribute('data-footnote-removing')
-      footnote.classList.add('hidden')
-      if (!footnote.getAttribute('data-footnote-id')) {
-        footnote.setAttribute('data-footnote-id', getId())
-      }
-      const footnoteId = footnote.getAttribute('data-footnote-id')
-      const footnoteRef = footnote.getAttribute('data-footnote-ref')
-      const placeholder = footnotePlaceholders[footnoteId] || document.createElement('span')
-      if (!footnotePlaceholders[footnoteId]) {
-        placeholder.setAttribute('data-placeholder-for', footnoteId)
-        if (footnoteRef) {
-          placeholder.classList.add('footnote-ref')
-          placeholder.innerText = footnoteRef
-        } else {
-          placeholder.style.display = 'none'
-        }
-        footnotePlaceholders[footnoteId] = placeholder
-      }
-      if (placeholder.parentNode) {
-        rmNow(footnote)
-      }
-      footnote.parentNode.replaceChild(placeholder, footnote)
-      footnotePlaceholders[footnoteId] = placeholder
-      holder.appendChild(footnote)
-      footnote.classList.remove('hidden')
-    })
+    returnAllFootnotes(holder)
+    distributeFootnotesForSlide(Reveal.getIndices(), holder)
     Reveal.layout()
   }
-  ['ready', 'slidechanged', 'overviewshown', 'overviewhidden', 'paused', 'resumed'].forEach(function(evt) {
-    Reveal.addEventListener(evt, function (event) {
-      updateSlides()
-    })
+  
+  Reveal.whenReady(function () {
+    updateSlides();
+    Reveal.addAllChangeListener(updateSlides)
   })
-  Reveal.addEventListener('slidechanged', function (event) {
-    updateSlides()
-  })
-  Reveal.sync = (function (oldSync) {
-    return function () {
-      updateSlides()
-      oldSync()
-    }
-  })(Reveal.sync)
-  updateSlides()
+  return {
+    renumberSlide: renumberSlide,
+    updateSlides: updateSlides
+  }
 })()

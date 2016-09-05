@@ -1,9 +1,9 @@
-.reveal .kitten-pinwheel .footnote-ref, .reveal .kitten-side-by-side .footnote-ref, .backgrounds > .slide-background.present .bg-animated-kitten .footnote-ref, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-kitten .footnote-ref {
+.reveal section .kitten-side-by-side .footnote-ref, .reveal .kitten-pinwheel .footnote-ref, .reveal .kitten-side-by-side .footnote-ref, .backgrounds > .slide-background.present .bg-animated-kitten .footnote-ref, .backgrounds > .slide-background.stack.present > .slide-background.present .bg-animated-kitten .footnote-ref {
   position: absolute;
   background-color: rgba(200, 200, 200, 0.4);
   padding: 5px;
   text-align: center;
-  font-size: 16px;
+  font-size: 24px;
   border: none;
   display: block;
   margin: 0px; }
@@ -51,11 +51,15 @@
       border-right: 0px; }
 .reveal section .kitten-side-by-side {
   display: table-cell;
-  position: relative; }
+  position: relative;
+  max-width: 50%; }
   .reveal section .kitten-side-by-side img {
     margin: 0;
     max-height: none;
     max-width: 100%; }
+  .reveal section .kitten-side-by-side .footnote-ref {
+    left: 0;
+    top: 0; }
 .reveal .kitten-side-by-side .footnote-ref {
   left: 0;
   top: 0; }
@@ -86,7 +90,8 @@ footnote {
     #footnote-holder > *.hidden {
       opacity: 0;
       transition: opacity .5s;
-      transition: height .5s; }
+      transition: height .5s;
+      height: 0; }
   #footnote-holder footnote {
     font-size: inherit; }
 

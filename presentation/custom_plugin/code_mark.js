@@ -1,11 +1,11 @@
 (function () {
-  function map (arr, fn) {
+  function _map (arr, fn) {
     return Array.prototype.map.call(arr, fn)
   }
-  function forEach (arr, fn) {
+  function _forEach (arr, fn) {
     return Array.prototype.forEach.call(arr, fn)
   }
-  forEach(document.querySelectorAll('[data-mark]'), function (element) {
+  _forEach(document.querySelectorAll('[data-mark]'), function (element) {
     let fragCounter = 1
     const re = /<\/?(mark|add|rm|fragment)>([^]*?)<\/\1>/gmi
     const str = element.innerHTML
@@ -39,16 +39,16 @@
     }
     element.setAttribute('data-noescape', true)
   })
-  Reveal.addEventListener('ready', updateCode)
+  Reveal.whenReady(updateCode)
 
   function updateCode () {
     if (!hljs) {
       return
     }
-    forEach(document.querySelectorAll('code[inline]'), function (elm) {
+    _forEach(document.querySelectorAll('code[inline]'), function (elm) {
       const lang = elm.getAttribute('inline')
       elm.removeAttribute('inline')
-      const classList = map(elm.classList, function (c) { return c })
+      const classList = _map(elm.classList, function (c) { return c })
       if (classList.indexOf('hljs') === -1) {
         if (lang && classList.indexOf(lang) === -1) {
           elm.classList.add(lang)

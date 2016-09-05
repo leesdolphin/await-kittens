@@ -4,7 +4,34 @@ import pkgutil
 from . import __path__ as parent_path
 
 
+PRESENTATION_IDS = [
+    '6157871473',  # Openning slide
+    '5630633595',  # First async kitten.
+]
+async def async_download_presentation_kittens():
+    import asyncio
+    import aiohttp
+    from .output import KittenWriter
+    from .v3_async_dl import Flickr, download_kitten
+    async with aiohttp.ClientSession() as session:
+        flickr = Flickr(session,
+                        open('.flickr-key').read().strip())
+        with KittenWriter('pres', create_combined=False) as writer:
+            folder = writer.image_folder
+            writer.add_all(await asyncio.gather(*[
+                download_kitten(flickr, folder, kitten_id)
+                for kitten_id in PRESENTATION_IDS
+            ]))
+
+
+def download_presentation_kittens():
+    import asyncio
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(async_download_presentation_kittens())
+
+
 def download_all():
+    download_presentation_kittens()
     qualname = __package__ + '.__main__'
     package_name = __package__
     for finder, name, ispkg in pkgutil.walk_packages(parent_path, package_name + '.'):

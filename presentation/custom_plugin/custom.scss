@@ -5,7 +5,7 @@
   background-color: rgba(200, 200, 200, 0.4);
   padding: 5px;
   text-align: center;
-  font-size: 16px;
+  font-size: 24px;
   border: none;
   display: block;
   margin: 0px;
@@ -72,10 +72,16 @@
     .kitten-side-by-side {
       display: table-cell;
       position: relative;
+      max-width: 50%;
       img {
         margin: 0;
         max-height: none;
         max-width: 100%;
+      }
+      .footnote-ref {
+        @extend %footnote-ref;
+        left: 0;
+        top: 0;
       }
     }
   }
@@ -119,6 +125,7 @@ footnote {
       opacity: 0;
       transition: opacity .5s;
       transition: height .5s;
+      height: 0
     }
   }
   footnote {

@@ -43,19 +43,12 @@
       <div class='footer-marking' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-          <section data-background='img/start_page_kitten.jpg' class="image-slide">
-            <h1><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
-            <h3 data-dropshadow>Kitten pictures - Asynchronously</h3>
-            <p data-dropshadow>
+          <section data-background-kittens='6157871473' class="image-slide">
+            <h1 class="fragment fade-out" data-fragment-index='1'><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
+            <h3 class="fragment fade-out" data-fragment-index='1' data-dropshadow>Kitten pictures - Asynchronously</h3>
+            <p class="fragment fade-out" data-fragment-index='1' data-dropshadow>
               <small>Lee Symes</small>
             </p>
-            <footnote class='kitten-info'>
-              &ldquo;Kitten!&rdquo;(<a href='https://flic.kr/p/ao9GDP'>flic.kr/p/ao9GDP</a>) by
-              <b><a href='https://www.flickr.com/people/mediumpanda' class='no-colour'>
-                Sergey Ivanov
-              </a></b>
-              <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY SA 2.0</a></span>
-            </footnote>
           </section>
 
           <section>
@@ -165,8 +158,10 @@
                     ])
               </code></pre>
             </section>
-            <section class="image-slide">
-              <span data-kittens="v1"></span>
+            <section class="image-slide" data-background-kitten-run='v1'>
+              <div class="fragment" style='background-color: white' data-fragment-index="1">
+                Downloading 4 kittens took <span data-kitten-data='v1:time'></span>
+              </div>
             </section>
           </section>
           <section>
@@ -257,20 +252,10 @@
                 loop.run_until_complete(async_main())
               </code></pre>
             </section>
-            <section class="image-slide">
-              <img src='img/my_first_async_kitten.jpg' />
-              <span class='image-overlay fragment'>
-                <span>
-                  Time taken: 10.5 seconds
-                </span>
-              </span>
-              <footnote class='kitten-info'>
-                &ldquo;Kittens!!&rdquo;(<a href='https://flic.kr/p/9zytcz'>flic.kr/p/9zytcz</a>) by
-                <b><a href='https://www.flickr.com/people/guerson' class='no-colour'>
-                  Alexandra Guerson
-                </a></b>
-                <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/">CC BY NC ND 2.0</a></span>
-              </footnote>
+            <section class="image-slide" data-background-kittens='5630633595'>
+              <div class="fragment" style="background-color: white">
+                Time taken: 10.5 seconds
+              </div>
             </section>
           </section>
           <section>
@@ -307,27 +292,9 @@
                 </span>
               </span>
               <div style='width: 100%;height: 100%;'>
-                <div class='kitten-side-by-side'>
-                  <img src='img/parallel_async_1.jpg' alt='Kitten' />
-                  <footnote class='kitten-info' data-footnote-ref='[1]'>
-                    <span class='kitten-id'>[1] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/pBs6DC'>flic.kr/p/pBs6DC</a>)
-                    by
-                    <b><a href='https://www.flickr.com/people/soumyaroop_chatterjee' class='no-colour'>
-                      Soumyaroop Chatterjee
-                    </a></b>
-                    <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
-                  </footnote>
+                <div class='kitten-side-by-side' data-kitten='15497374938'>
                 </div>
-                <div class='kitten-side-by-side'>
-                  <img src='img/parallel_async_2.jpg' alt='Kitten' />
-                  <footnote class='kitten-info' data-footnote-ref='[2]'>
-                    <span class='kitten-id'>[2] </span>&ldquo;Kitten&rdquo;(<a href='https://flic.kr/p/775u3W'>flic.kr/p/775u3W</a>)
-                    by
-                    <b><a href='https://www.flickr.com/people/22254604@N05' class='no-colour'>
-                      Raymond
-                    </a></b>
-                    <span class="license"> is licensed under <a href="https://creativecommons.org/licenses/by-nd/2.0/">CC BY ND 2.0</a></span>
-                  </footnote>
+                <div class='kitten-side-by-side' data-kitten='4006914394'>
                 </div>
               </div>
             </section>
@@ -418,7 +385,7 @@
                 return photo_data
               </code></pre>
             </section>
-            <section class="image-slide" data-background-image= >
+            <section class="image-slide" data-background-kitten-run='v2' >
               <span class='image-overlay fragment' data-fragment-index='1'>
                 <div>
                   <span class='fragment' data-fragment-index='1'>
@@ -429,7 +396,6 @@
                   </span>
                 </div>
               </span>
-              <span data-kittens="v2:no-time"></span>
             </section>
           </section>
           <section>
@@ -437,34 +403,38 @@
               <h2>Even faster?</h2>
             </section>
             <section>
-              <h2>The newer order</h2>
+              <h2>The new order</h2>
               <div class='side-by-side-list'>
-                <ol>
-                  <li>
-                    API Call: <code>getInfo</code>
-                  </li>
-                  <li>
-                    API Call: <code>getSizes</code>
-                  </li>
-                  <li>
-                    Download Kitten Picture
-                  </li>
-                </ol>
-                <ol>
-                  <li>
-                    API Call: <code>getInfo</code>
-                  </li>
-                  <li>
-                    API Call: <code>getSizes</code>
-                  </li>
-                  <li>
-                    Download Kitten Picture
-                  </li>
-                </ol>
+                <div>
+                  <ol>
+                    <li>
+                      API Call: <code>getInfo</code>
+                    </li>
+                    <li>
+                      API Call: <code>getSizes</code>
+                    </li>
+                    <li>
+                      Download Kitten Picture
+                    </li>
+                  </ol>
+                </div>
+                <div>
+                  <ol>
+                    <li>
+                      API Call: <code>getInfo</code>
+                    </li>
+                    <li>
+                      API Call: <code>getSizes</code>
+                    </li>
+                    <li>
+                      Download Kitten Picture
+                    </li>
+                  </ol>
+                </div>
               </div>
             </section>
             <section>
-              <h2>The new-er order</h2>
+              <h2>The newer order</h2>
               <div class='side-by-side-list fragment' data-fragment-index='1'>
                 <div class='side-by-side-list'>
                   <div>
@@ -595,15 +565,13 @@
             return !!document.querySelector('[data-markdown]');
           }
         }, {
-          src: 'custom_plugin/kittens_include.js',
-          condition: function() {
-            return !!document.querySelector('[data-kittens]');
-          }
+          src: 'custom_plugin/extn.js',
         }, {
-          src: 'custom_plugin/kitten_bg.js',
-          condition: function() {
-            return !!document.querySelector('[data-kittens]');
-          }
+          src: 'custom_plugin/footnotes.js',
+          async: true
+        }, {
+          src: 'custom_plugin/kittens_include.js',
+          async: true
         }, {
           src: 'custom_plugin/code_mark.js',
           condition: function() {
@@ -637,12 +605,6 @@
           async: false,
           condition: function() {
             return !!document.querySelector('[data-cc]');
-          }
-        }, {
-          src: 'custom_plugin/footnotes.js',
-          async: true,
-          condition: function() {
-            return !!document.querySelector('footnote') && document.querySelector('#footnote-holder');
           }
         }, ]
       });

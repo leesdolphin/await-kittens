@@ -15,6 +15,9 @@
     "globals": {
       "Reveal": false,
       "Kittens": false,
+      "Footnotes": false,
+      "_forEach": false,
+      "_map": false,
       "hljs": false
     },
     "rules": {

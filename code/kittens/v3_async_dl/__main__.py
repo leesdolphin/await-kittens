@@ -8,7 +8,7 @@ from . import Flickr, download_kitten
 
 
 async def async_main():
-    with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession() as session:
         flickr = Flickr(session,
                         open('.flickr-key').read().strip())
         with KittenWriter('v3') as writer:
@@ -24,15 +24,12 @@ async def async_main():
                               '15745379826', '9160823116',
                               '15811753760', '16514598668']:
               downloads.append(download_kitten(flickr, folder, kitten_id))
-            for pending_kitten in asyncio.as_completed(downloads):
-              kitten = await pending_kitten
-              writer.add(kitten)
+            writer.add_all(await asyncio.gather(*downloads))
 
 
 def main():
     loop = asyncio.get_event_loop()
     loop.run_until_complete(async_main())
-    loop.stop()
 
 if __name__ == '__main__':
     main()

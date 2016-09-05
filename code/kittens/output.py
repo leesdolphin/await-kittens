@@ -83,9 +83,10 @@ def create_jinja_env():
 
 class KittenWriter():
 
-    def __init__(self, version, inline_style=False, use_pickle=False):
+    def __init__(self, version, inline_style=False, create_combined=True):
         self._version = version
         self._inline_style = inline_style
+        self._create_combined = create_combined
         self._start_time = None
         self._finish_time = None
         self._photos = []
@@ -116,8 +117,9 @@ class KittenWriter():
         jvars = self.create_jinja_vars(use_pickle=use_pickle)
         env = create_jinja_env()
         self.write_per_kitten_templates(jvars, env)
-        self.write_kitten_dir_templates(jvars, env)
-        self.write_slide_templates(jvars, env)
+        if self._create_combined:
+          self.write_kitten_dir_templates(jvars, env)
+          self.write_slide_templates(jvars, env)
 
     def write_kitten_dir_templates(self, jvars, env):
         style_template = env.get_template('style.css')
