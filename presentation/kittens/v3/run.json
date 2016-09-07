@@ -1,9 +1,38 @@
 {
   "kittens": [
     {
-      "description": "These are our foster kittens, Luna &amp; Tigger. They are five weeks old.",
-      "id": 5630633595,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5630633595_baa0e24b68_b.jpg",
+      "description": "",
+      "height": 726,
+      "id": 5009756482,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5009756482_9f74d1e7d1_b.jpg",
+      "image_relative_path": "presentation/kittens/v3/5009756482_9f74d1e7d1_b.jpg",
+      "image_url": "https://farm5.staticflickr.com/4084/5009756482_9f74d1e7d1_b.jpg",
+      "license": {
+        "name": "Attribution-NonCommercial-NoDerivs License",
+        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
+      },
+      "owner": {
+        "id": "27875041@N02",
+        "path": "27875041@N02",
+        "path_alias": null,
+        "realname": "Daisyree Bakker",
+        "username": "Daisyree Bakker"
+      },
+      "short_no_scheme_url": "flic.kr/p/8CGj4L",
+      "short_url": "https://flic.kr/p/8CGj4L",
+      "title": "Kittens!",
+      "urls": {
+        "photopage": "https://www.flickr.com/photos/27875041@N02/5009756482/"
+      },
+      "width": 1024
+    },
+    {
+      "description": "",
+      "height": 681,
+      "id": 5771289515,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5771289515_13b1b11f2a_b.jpg",
+      "image_relative_path": "presentation/kittens/v3/5771289515_13b1b11f2a_b.jpg",
+      "image_url": "https://farm3.staticflickr.com/2306/5771289515_13b1b11f2a_b.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -15,39 +44,21 @@
         "realname": "Alexandra Guerson",
         "username": "Alexandra Guerson"
       },
-      "short_no_scheme_url": "flic.kr/p/9zytcz",
-      "short_url": "https://flic.kr/p/9zytcz",
-      "title": "Kittens!!",
+      "short_no_scheme_url": "flic.kr/p/9MZniD",
+      "short_url": "https://flic.kr/p/9MZniD",
+      "title": "Tigger the tiger",
       "urls": {
-        "photopage": "https://www.flickr.com/photos/guerson/5630633595/"
-      }
-    },
-    {
-      "description": " Samsung digital camera",
-      "id": 6367077969,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6367077969_05b5e46f8a_b.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
+        "photopage": "https://www.flickr.com/photos/guerson/5771289515/"
       },
-      "owner": {
-        "id": "29638108@N06",
-        "path": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C.",
-        "username": "www.metaphoricalplatypus.com"
-      },
-      "short_no_scheme_url": "flic.kr/p/aGCWsn",
-      "short_url": "https://flic.kr/p/aGCWsn",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/6367077969/"
-      }
+      "width": 1024
     },
     {
       "description": "",
+      "height": 682,
       "id": 5642852589,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5642852589_ea790537df_b.jpg",
+      "image_relative_path": "presentation/kittens/v3/5642852589_ea790537df_b.jpg",
+      "image_url": "https://farm6.staticflickr.com/5023/5642852589_ea790537df_b.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -64,188 +75,16 @@
       "title": "Sleepy time",
       "urls": {
         "photopage": "https://www.flickr.com/photos/guerson/5642852589/"
-      }
+      },
+      "width": 1024
     },
     {
-      "description": "These are our foster kittens, Luna &amp; Tigger. They are five weeks old.",
-      "id": 5630633419,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5630633419_7790b40f8a_o.jpg",
-      "license": {
-        "name": "Attribution-NonCommercial-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
-      },
-      "owner": {
-        "id": "39604225@N00",
-        "path": "guerson",
-        "path_alias": "guerson",
-        "realname": "Alexandra Guerson",
-        "username": "Alexandra Guerson"
-      },
-      "short_no_scheme_url": "flic.kr/p/9zyt9x",
-      "short_url": "https://flic.kr/p/9zyt9x",
-      "title": "Kittens!!",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/guerson/5630633419/"
-      }
-    },
-    {
-      "description": "",
-      "id": 8522145980,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/8522145980_7d22ff33e3_h.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
-      },
-      "owner": {
-        "id": "44124483743@N01",
-        "path": "brownpau",
-        "path_alias": "brownpau",
-        "realname": "brownpau",
-        "username": "brownpau"
-      },
-      "short_no_scheme_url": "flic.kr/p/dZ5e6o",
-      "short_url": "https://flic.kr/p/dZ5e6o",
-      "title": "Amelia Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/brownpau/8522145980/"
-      }
-    },
-    {
-      "description": "",
-      "id": 4671107278,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/4671107278_4eae936da8_b.jpg",
-      "license": {
-        "name": "Attribution-NonCommercial License",
-        "url": "https://creativecommons.org/licenses/by-nc/2.0/"
-      },
-      "owner": {
-        "id": "41201087@N00",
-        "path": "nicolekelly",
-        "path_alias": "nicolekelly",
-        "realname": "",
-        "username": "Nicole.Kelly"
-      },
-      "short_no_scheme_url": "flic.kr/p/87LDso",
-      "short_url": "https://flic.kr/p/87LDso",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/nicolekelly/4671107278/"
-      }
-    },
-    {
-      "description": "",
-      "id": 7572923500,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/7572923500_7ff22bff33_b.jpg",
-      "license": {
-        "name": "Attribution-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nd/2.0/"
-      },
-      "owner": {
-        "id": "60146911@N03",
-        "path": "johkarphotos",
-        "path_alias": "johkarphotos",
-        "realname": "",
-        "username": "johkarphotos"
-      },
-      "short_no_scheme_url": "flic.kr/p/cxcdjy",
-      "short_url": "https://flic.kr/p/cxcdjy",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/johkarphotos/7572923500/"
-      }
-    },
-    {
-      "description": "",
-      "id": 6157871473,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6157871473_d4b4b0f00d_b.jpg",
-      "license": {
-        "name": "Attribution-ShareAlike License",
-        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
-      },
-      "owner": {
-        "id": "51707531@N07",
-        "path": "mediumpanda",
-        "path_alias": "mediumpanda",
-        "realname": "Sergey Ivanov",
-        "username": "Sergey Ivanov"
-      },
-      "short_no_scheme_url": "flic.kr/p/ao9GDP",
-      "short_url": "https://flic.kr/p/ao9GDP",
-      "title": "Kitten!",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/mediumpanda/6157871473/"
-      }
-    },
-    {
-      "description": "",
-      "id": 6157871473,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6157871473_d4b4b0f00d_b.jpg",
-      "license": {
-        "name": "Attribution-ShareAlike License",
-        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
-      },
-      "owner": {
-        "id": "51707531@N07",
-        "path": "mediumpanda",
-        "path_alias": "mediumpanda",
-        "realname": "Sergey Ivanov",
-        "username": "Sergey Ivanov"
-      },
-      "short_no_scheme_url": "flic.kr/p/ao9GDP",
-      "short_url": "https://flic.kr/p/ao9GDP",
-      "title": "Kitten!",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/mediumpanda/6157871473/"
-      }
-    },
-    {
-      "description": "",
-      "id": 5490797607,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5490797607_fef1c69401_b.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
-      },
-      "owner": {
-        "id": "30967075@N08",
-        "path": "30967075@N08",
-        "path_alias": null,
-        "realname": "",
-        "username": "dia_n"
-      },
-      "short_no_scheme_url": "flic.kr/p/9ncLQg",
-      "short_url": "https://flic.kr/p/9ncLQg",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/30967075@N08/5490797607/"
-      }
-    },
-    {
-      "description": "Meet Hurley. He is one of the kittens at the kit-kat rescue center that Erica and I volunteer at on weekends. What a sweetie!",
-      "id": 3732837915,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/3732837915_e2d87027ae_b.jpg",
-      "license": {
-        "name": "Attribution-NonCommercial-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
-      },
-      "owner": {
-        "id": "70259473@N00",
-        "path": "nebarnix",
-        "path_alias": "nebarnix",
-        "realname": "Jasper Nance",
-        "username": "nebarnix"
-      },
-      "short_no_scheme_url": "flic.kr/p/6FRLEp",
-      "short_url": "https://flic.kr/p/6FRLEp",
-      "title": "Kittens!",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/nebarnix/3732837915/"
-      }
-    },
-    {
-      "description": "",
-      "id": 15811753760,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/15811753760_435a571975_b.jpg",
+      "description": " Samsung digital camera",
+      "height": 768,
+      "id": 6367077969,
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6367077969_05b5e46f8a_b.jpg",
+      "image_relative_path": "presentation/kittens/v3/6367077969_05b5e46f8a_b.jpg",
+      "image_url": "https://farm7.staticflickr.com/6221/6367077969_05b5e46f8a_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -257,168 +96,15 @@
         "realname": "Jennifer C.",
         "username": "www.metaphoricalplatypus.com"
       },
-      "short_no_scheme_url": "flic.kr/p/q6enw9",
-      "short_url": "https://flic.kr/p/q6enw9",
+      "short_no_scheme_url": "flic.kr/p/aGCWsn",
+      "short_url": "https://flic.kr/p/aGCWsn",
       "title": "Kitten",
       "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
-      }
-    },
-    {
-      "description": "The biggest of the bunch.",
-      "id": 2553836823,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/2553836823_c946e572ae_b.jpg",
-      "license": {
-        "name": "Attribution-ShareAlike License",
-        "url": "https://creativecommons.org/licenses/by-sa/2.0/"
+        "photopage": "https://www.flickr.com/photos/29638108@N06/6367077969/"
       },
-      "owner": {
-        "id": "85603833@N00",
-        "path": "nicsuzor",
-        "path_alias": "nicsuzor",
-        "realname": "Nicolas Suzor",
-        "username": "nicsuzor"
-      },
-      "short_no_scheme_url": "flic.kr/p/4TF5Hn",
-      "short_url": "https://flic.kr/p/4TF5Hn",
-      "title": "Kittens!",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/nicsuzor/2553836823/"
-      }
-    },
-    {
-      "description": "",
-      "id": 4006914394,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/4006914394_924d9e895d_b.jpg",
-      "license": {
-        "name": "Attribution-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nd/2.0/"
-      },
-      "owner": {
-        "id": "22254604@N05",
-        "path": "22254604@N05",
-        "path_alias": null,
-        "realname": "Raymond",
-        "username": "rmrcrjr"
-      },
-      "short_no_scheme_url": "flic.kr/p/775u3W",
-      "short_url": "https://flic.kr/p/775u3W",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/22254604@N05/4006914394/"
-      }
-    },
-    {
-      "description": "Neighborhood kitten.",
-      "id": 15497374938,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/15497374938_d60dfdd8de_b.jpg",
-      "license": {
-        "name": "Attribution-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nd/2.0/"
-      },
-      "owner": {
-        "id": "60987981@N08",
-        "path": "soumyaroop_chatterjee",
-        "path_alias": "soumyaroop_chatterjee",
-        "realname": "Soumyaroop Chatterjee",
-        "username": "Soumyaroop"
-      },
-      "short_no_scheme_url": "flic.kr/p/pBs6DC",
-      "short_url": "https://flic.kr/p/pBs6DC",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/soumyaroop_chatterjee/15497374938/"
-      }
-    },
-    {
-      "description": "Foster Kittens: Neve, Firn, Shiya, and Batcat\n",
-      "id": 15745379826,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/15745379826_d083bc1540_b.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
-      },
-      "owner": {
-        "id": "29638108@N06",
-        "path": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C.",
-        "username": "www.metaphoricalplatypus.com"
-      },
-      "short_no_scheme_url": "flic.kr/p/pZnbRY",
-      "short_url": "https://flic.kr/p/pZnbRY",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/15745379826/"
-      }
-    },
-    {
-      "description": "OLYMPUS DIGITAL CAMERA",
-      "id": 9160823116,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/9160823116_b2e3ca15cf_b.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
-      },
-      "owner": {
-        "id": "29638108@N06",
-        "path": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C.",
-        "username": "www.metaphoricalplatypus.com"
-      },
-      "short_no_scheme_url": "flic.kr/p/eXvBy9",
-      "short_url": "https://flic.kr/p/eXvBy9",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/9160823116/"
-      }
-    },
-    {
-      "description": "",
-      "id": 15811753760,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/15811753760_435a571975_b.jpg",
-      "license": {
-        "name": "Attribution License",
-        "url": "https://creativecommons.org/licenses/by/2.0/"
-      },
-      "owner": {
-        "id": "29638108@N06",
-        "path": "29638108@N06",
-        "path_alias": null,
-        "realname": "Jennifer C.",
-        "username": "www.metaphoricalplatypus.com"
-      },
-      "short_no_scheme_url": "flic.kr/p/q6enw9",
-      "short_url": "https://flic.kr/p/q6enw9",
-      "title": "Kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
-      }
-    },
-    {
-      "description": "one of the strays living on our balcony ",
-      "id": 16514598668,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/16514598668_bf5d5b48f6_b.jpg",
-      "license": {
-        "name": "Attribution-NonCommercial-NoDerivs License",
-        "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
-      },
-      "owner": {
-        "id": "100326355@N03",
-        "path": "100326355@N03",
-        "path_alias": null,
-        "realname": "",
-        "username": "abimercado"
-      },
-      "short_no_scheme_url": "flic.kr/p/rakCPN",
-      "short_url": "https://flic.kr/p/rakCPN",
-      "title": "kitten",
-      "urls": {
-        "photopage": "https://www.flickr.com/photos/100326355@N03/16514598668/"
-      }
+      "width": 1024
     }
   ],
-  "per_kitten_time": 0.07508957894736841,
-  "time": 1.426702
+  "per_kitten_time": 1.21020525,
+  "time": 4.840821
 }

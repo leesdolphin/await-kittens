@@ -38,7 +38,6 @@ const Kittens = (function () {  //
   }
   function getKittenElmFromDom (kittenDom, _opts) {
     const opts = _opts || {}
-    const footnote = kittenDom.getElementsByTagName('footnote')[0]
     const div = document.createElement('div')
     const imgTag = kittenDom.getElementsByTagName('img')[0]
     if (!opts.useImg) {
@@ -48,7 +47,13 @@ const Kittens = (function () {  //
     } else {
       div.appendChild(imgTag)
     }
-    div.appendChild(footnote)
+    if (!opts.excludeFootnote) {
+      const footnote = kittenDom.getElementsByTagName('footnote')[0]
+      div.appendChild(footnote)
+    }
+    if (opts.useImg && div.children.length === 1) {
+      return div.children[0]
+    }
     return div
   }
   function getKittenElm (kittenId, opts) {
@@ -78,12 +83,20 @@ const Kittens = (function () {  //
     })
   }
 
+  function getAllKittens (_opts) {
+    return fetchCache('kittens/individuals/images.json')
+      .then(function (_all) {
+        return JSON.parse(_all)
+      })
+  }
+
   return {
     getKittenHtml: getKittenHtml,
     getKittenJson: getKittenJson,
     getKittenHtmlById: getKittenHtmlById,
     getKittenElmFromDom: getKittenElmFromDom,
     getKittenElm: getKittenElm,
+    getAllKittens: getAllKittens,
 
     renumberFootnotes: renumberFootnotes
   }
@@ -93,9 +106,8 @@ function _map (arr, fn) {
   return Array.prototype.map.call(arr, fn)
 }
 (function () {
-
   Reveal.whenReady(updateFootnotes)
-  function updateFootnotes () {
+  function updateFootnotes (forceRelayout) {
     try {
       Footnotes.renumberSlide
     } catch (e) {
@@ -107,6 +119,9 @@ function _map (arr, fn) {
         Kittens.renumberFootnotes(index, true)
       }
     })
+    if (forceRelayout) {
+      Reveal.layout()
+    }
   }
 
   return Promise.all([
@@ -120,7 +135,11 @@ function _map (arr, fn) {
         element.appendChild(kittenDiv)
       })
     }))
-  ])
+  ]).then(function () {
+    Reveal.whenReady(function () {
+      updateFootnotes(true)
+    })
+  })
 
   function htmlKittens (kittenId, kittenElm) {
     return Kittens.getKittenHtml(kittenId)
@@ -153,7 +172,196 @@ function _map (arr, fn) {
     const kittenData = element.getAttribute('data-kitten-data')
     const kittenId = kittenData.split(':')[0]
     return updateKittenElms(kittenId, element)
-  })
+  });
+  // (function () {
+  //   'use strict'
+  //   const allKittenSlides = document.querySelectorAll('[data-all-kittens]')
+  //   if (!allKittenSlides) {
+  //     return
+  //   }
+  //   const kittenInfo = []
+  //   Kittens.getAllKittens().then(function (allKittens) {
+  //     Object.keys(allKittens).forEach(function (kittenId) {
+  //       const kitten = allKittens[kittenId]
+  //       let path = kitten['image_relative_path']
+  //       if (path.startsWith('presentation/')) {
+  //         path = path.substring('presentation/'.length)
+  //       }
+  //       kittenInfo.push({
+  //         'height': kitten['height'],
+  //         'width': kitten['width'],
+  //         'imagePath': path
+  //       })
+  //     })
+  //   }).then(function () {
+  //     // Reveal.whenReady(function () {
+  //     //   _forEach(allKittenSlides, function (slide) {
+  //     //     const idxes = Reveal.getIndices(slide)
+  //     //     const bg = Reveal.getSlideBackground(idxes.h, idxes.v)
+  //     //     bg.style.paddingTop = '100px'
+  //     //     const container = document.createElement('div')
+  //     //     container.classList.add('multi-kitten')
+  //     //     bg.appendChild(container)
+  //     //
+  //     //     window.addEventListener('resize', function () {
+  //     //       setTimeout(updateWidths, 2)
+  //     //     })
+  //     //     container.addEventListener('transitionend', animate, {passive: true})
+  //     //
+  //     //     let width
+  //     //     let cols
+  //     //     let colWidth
+  //     //     const animMovement = 500
+  //     //     const colOffsets = []
+  //     //     let oldOffsets = []
+  //     //     const colItems = []
+  //     //
+  //     //     updateWidths()
+  //     //     animate()
+  //     //
+  //     //     function diffOffsets (name) {
+  //     //       let diff = false
+  //     //       if (colOffsets.length === oldOffsets.length) {
+  //     //         colOffsets.forEach(function (val, idx) {
+  //     //           diff = diff || (oldOffsets[idx] !== val)
+  //     //         })
+  //     //       } else {
+  //     //         diff = true
+  //     //       }
+  //     //       if (diff) {
+  //     //         console.log(name, oldOffsets, colOffsets)
+  //     //       }
+  //     //       oldOffsets = colOffsets.slice()
+  //     //     }
+  //     //
+  //     //     function nextCol () {
+  //     //       let minVal = Infinity
+  //     //       let minIdx = 0
+  //     //       if (colOffsets.length !== cols) {
+  //     //         return colOffsets.length
+  //     //       }
+  //     //       colOffsets.forEach(function (val, idx) {
+  //     //         if (val < minVal) {
+  //     //           minIdx = idx
+  //     //           minVal = val
+  //     //         }
+  //     //       })
+  //     //       return minIdx
+  //     //     }
+  //     //
+  //     //     function updateWidths () {
+  //     //       const newWidth = bg.clientWidth
+  //     //       const newCols = Math.ceil(newWidth / 400)
+  //     //       diffOffsets('updateWidths')
+  //     //       if (newWidth === width) {
+  //     //         return
+  //     //       } else if (newCols === cols) {
+  //     //         width = newWidth
+  //     //         colWidth = Math.round(width / cols)
+  //     //         adjustItems()
+  //     //       } else {
+  //     //         width = newWidth
+  //     //         cols = newCols
+  //     //         colWidth = Math.round(width / cols)
+  //     //         colItems.forEach(function (imgTags, thisCol) {
+  //     //           imgTags.forEach(function (imgTag) {
+  //     //             imgTag.parentElement.removeChild(imgTag)
+  //     //           })
+  //     //         })
+  //     //         colItems.splice(0)
+  //     //         colOffsets.splice(0)
+  //     //         colOffsets.fill(0, 0, cols)
+  //     //       }
+  //     //       diffOffsets('updateWidths')
+  //     //       increaseLayout()
+  //     //       diffOffsets('updateWidths')
+  //     //     }
+  //     //
+  //     //     function adjustItems () {
+  //     //       // Adjust item Width/Height. Then increaseLayout
+  //     //       diffOffsets('adjustItems')
+  //     //       colItems.forEach(function (imgTags, thisCol) {
+  //     //         colOffsets[thisCol] = imgTags[0].offsetTop
+  //     //         imgTags.forEach(function (imgTag) {
+  //     //           const idx = imgTag.getAttribute('data-id')
+  //     //           const info = kittenInfo[idx]
+  //     //           putImgInCol(info, thisCol, imgTag)
+  //     //         })
+  //     //       })
+  //     //       diffOffsets('adjustItems')
+  //     //     }
+  //     //
+  //     //     function putImgInCol (info, thisCol, imgTag) {
+  //     //       const vOffset = colOffsets[thisCol] || 0
+  //     //       const wRatio = colWidth / info.width
+  //     //       const height = Math.round(info.height * wRatio)
+  //     //       imgTag.style.width = colWidth + 'px'
+  //     //       imgTag.style.height = height + 'px'
+  //     //       imgTag.style.left = (thisCol * colWidth) + 'px'
+  //     //       imgTag.style.top = vOffset + 'px'
+  //     //       colOffsets[thisCol] = vOffset + height
+  //     //     }
+  //     //
+  //     //     function removeOutOfView () {
+  //     //       diffOffsets('removeOutOfView')
+  //     //       const oldTop = container.offsetTop // Negative
+  //     //       colItems.forEach(function (imgTags, thisCol) {
+  //     //         let removed = 0
+  //     //         imgTags.slice().forEach(function (imgTag, oldIdx) {
+  //     //           const newTop = imgTag.offsetTop + oldTop
+  //     //           const bottom = (newTop + imgTag.offsetHeight)
+  //     //           if (!imgTag.parentElement) {
+  //     //             imgTags.pop(oldIdx - removed)
+  //     //             removed++
+  //     //             return
+  //     //           } else if (bottom < 0) {
+  //     //             imgTags.pop(oldIdx - removed)
+  //     //             if (imgTag.parentElement) {
+  //     //               imgTag.parentElement.removeChild(imgTag)
+  //     //             }
+  //     //             removed++
+  //     //           }
+  //     //         })
+  //     //       })
+  //     //       diffOffsets('removeOutOfView')
+  //     //     }
+  //     //
+  //     //     function animate () {
+  //     //       diffOffsets('animate')
+  //     //       removeOutOfView()
+  //     //       diffOffsets('animate')
+  //     //       increaseLayout()
+  //     //       diffOffsets('animate')
+  //     //       container.style.transitionProperty = 'none'
+  //     //       setTimeout(function () {
+  //     //         container.style.transitionDuration = '10s'
+  //     //         container.style.transitionTimingFunction = 'linear'
+  //     //         container.style.transitionProperty = 'top'
+  //     //         container.style.top = (container.offsetTop - animMovement) + 'px'
+  //     //       }, 1)
+  //     //     }
+  //     //
+  //     //     function increaseLayout () {
+  //     //       diffOffsets('increaseLayout')
+  //     //       const minHeight = bg.offsetHeight + (animMovement * 2) - container.offsetTop
+  //     //       while ((colOffsets[nextCol()] || 0) < minHeight) {
+  //     //         kittenInfo.forEach(function (info, idx) {
+  //     //           const thisCol = nextCol()
+  //     //           colItems[thisCol] = (colItems[thisCol] || [])
+  //     //           const imgTag = document.createElement('img')
+  //     //           imgTag.setAttribute('src', info.imagePath)
+  //     //           imgTag.setAttribute('data-id', idx)
+  //     //           putImgInCol(info, thisCol, imgTag)
+  //     //           colItems[thisCol].push(imgTag)
+  //     //           container.appendChild(imgTag)
+  //     //         })
+  //     //         diffOffsets('increaseLayout')
+  //     //       }
+  //     //     }
+  //     //   })
+  //     // })
+  //   })
+  // }());
 
   function updateKittenElms (kittenId, kittenElm) {
     return Kittens.getKittenJson(kittenId)
@@ -175,28 +383,27 @@ function _map (arr, fn) {
     return time + ' seconds'
   }
 
-  let slideBgStore = false
+  const slideBgStore = []
 
   Reveal.whenReady(createSlideBgs)
   function createSlideBgs () {
-    if (slideBgStore === false) {
-      slideBgStore = []
-      const slides = Reveal.getAllSlides()
-      slides.forEach(function (slide, idx) {
-        if (slide.hasAttribute('data-background-images')) {
-          slideBgStore.push(manageSlide(slide, getImagesFromAttr))
-        } else if (slide.hasAttribute('data-background-kitten-run')) {
-          slideBgStore.push(manageSlide(slide, getImagesFromKittenRun))
-        } else if (slide.hasAttribute('data-background-kittens')) {
-          slideBgStore.push(manageSlide(slide, getImagesFromKittenIds))
-        }
-      })
-    }
-    slideBgStore.forEach(function (manager) {
-      manager.updateSlideDisplays()
-      manager.updateTimer()
+    const slides = Reveal.getAllSlides()
+    slides.forEach(function (slide, idx) {
+      if (slide.hasAttribute('data-background-images')) {
+        slideBgStore.push(manageSlide(slide, getImagesFromAttr))
+      } else if (slide.hasAttribute('data-background-kitten-run')) {
+        slideBgStore.push(manageSlide(slide, getImagesFromKittenRun))
+      } else if (slide.hasAttribute('data-background-kittens')) {
+        slideBgStore.push(manageSlide(slide, getImagesFromKittenIds))
+      }
     })
   }
+
+  Reveal.addAllChangeListener(function () {
+    slideBgStore.forEach(function (manager) {
+      manager.updateTimer(true)
+    })
+  })
 
   function getImagesFromAttr (bg, slide) {
     return _map(slide.getAttribute('data-background-images').split(','), function (url, i) {
@@ -223,7 +430,7 @@ function _map (arr, fn) {
   }
   function getImagesFromKittenIds (bg, slide) {
     return Promise.all(slide.getAttribute('data-background-kittens').split(',').map(function (kittenId, idx) {
-      return Kittens.getKittenElm(kittenId)
+      return Kittens.getKittenElm(kittenId.trim())
         .then(function (div) {
           div.classList.add('bg-animated-img')
           div.classList.add('bg-animated-kitten')
@@ -257,26 +464,32 @@ function _map (arr, fn) {
       changerIdx = 0
       changerImgs = undefined
       Promise.resolve(getSlideImgs(bg, slide)).then(function (res) {
+        res[0].classList.add('bg-current')
         changerImgs = res
         updateSlideDisplays()
-        updateTimer()
+        updateTimer(true)
       })
     }
     function cancelTimer () {
       if (changerTimer) {
-        clearTimeout(changerTimer)
+        clearInterval(changerTimer)
         changerTimer = undefined
       }
     }
-    function updateTimer () {
+    function updateTimer (restartOnly) {
       const state = Reveal.getState()
-      cancelTimer()
       if (state.indexh !== indices.h || state.indexv !== indices.v ||
           state.paused || state.overview) {
-        console.log('ignoring update.')
+        cancelTimer()
+        updateSlideDisplays()
         return
       }
-      changerTimer = setTimeout(updateTimer, 5000)
+      if (changerTimer && restartOnly) {
+        return
+        // Noop.
+      } else if (!changerTimer) {
+        changerTimer = setInterval(updateTimer, 5000)
+      }
       if (changerImgs) {
         updateSlideDisplays()
         changerIdx = (changerIdx + 1) % changerImgs.length

@@ -1,3 +1,4 @@
+import pathlib
 
 
 class UnsupportedPhotoError(Exception):
@@ -99,7 +100,7 @@ def get_photo_license(license_id):
     return licenses[int(license_id)]
 
 
-def get_image_url_from_sizes(raw_photo_sizes_resp):
+def get_image_url_from_sizes(image_folder, raw_photo_sizes_resp):
     # Get the smallest size with both W&H > 700 and one of W/H>1024
     if not int(raw_photo_sizes_resp.get('sizes', {}).get('candownload', False)):
         raise UnsupportedPhotoError('Not downloadable')
@@ -118,4 +119,11 @@ def get_image_url_from_sizes(raw_photo_sizes_resp):
         else:
             break
     _, _, filename = img_url.rpartition('/')
-    return img_url, filename
+    img_path = pathlib.Path(image_folder) / filename
+    img_rel_path = img_path.relative_to(pathlib.Path.cwd())
+    return dict(
+        width=width, height=height,
+        image_url=img_url,
+        image_path=str(img_path),
+        image_relative_path=str(img_rel_path)
+    )

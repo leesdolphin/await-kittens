@@ -2,8 +2,11 @@
   "kittens": [
     {
       "description": "",
+      "height": 683,
       "id": 5490797607,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/5490797607_fef1c69401_b.jpg",
+      "image_relative_path": "presentation/kittens/v1/5490797607_fef1c69401_b.jpg",
+      "image_url": "https://farm6.staticflickr.com/5060/5490797607_fef1c69401_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -20,12 +23,16 @@
       "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/30967075@N08/5490797607/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "Meet Hurley. He is one of the kittens at the kit-kat rescue center that Erica and I volunteer at on weekends. What a sweetie!",
+      "height": 755,
       "id": 3732837915,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/3732837915_e2d87027ae_b.jpg",
+      "image_relative_path": "presentation/kittens/v1/3732837915_e2d87027ae_b.jpg",
+      "image_url": "https://farm4.staticflickr.com/3534/3732837915_e2d87027ae_b.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -42,12 +49,16 @@
       "title": "Kittens!",
       "urls": {
         "photopage": "https://www.flickr.com/photos/nebarnix/3732837915/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "",
+      "height": 644,
       "id": 15811753760,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/15811753760_435a571975_b.jpg",
+      "image_relative_path": "presentation/kittens/v1/15811753760_435a571975_b.jpg",
+      "image_url": "https://farm8.staticflickr.com/7520/15811753760_435a571975_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -64,12 +75,16 @@
       "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "The biggest of the bunch.",
+      "height": 681,
       "id": 2553836823,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v1/2553836823_c946e572ae_b.jpg",
+      "image_relative_path": "presentation/kittens/v1/2553836823_c946e572ae_b.jpg",
+      "image_url": "https://farm4.staticflickr.com/3136/2553836823_c946e572ae_b.jpg",
       "license": {
         "name": "Attribution-ShareAlike License",
         "url": "https://creativecommons.org/licenses/by-sa/2.0/"
@@ -86,9 +101,10 @@
       "title": "Kittens!",
       "urls": {
         "photopage": "https://www.flickr.com/photos/nicsuzor/2553836823/"
-      }
+      },
+      "width": 1024
     }
   ],
-  "per_kitten_time": 2.9839985,
-  "time": 11.935994
+  "per_kitten_time": 2.887381,
+  "time": 11.549524
 }

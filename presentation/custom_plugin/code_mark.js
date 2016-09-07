@@ -6,11 +6,15 @@
     return Array.prototype.forEach.call(arr, fn)
   }
   _forEach(document.querySelectorAll('[data-mark]'), function (element) {
-    let fragCounter = 1
+    element.setAttribute('data-noescape', true)
+    splitTextToFragments(element, element.innerHTML)
+  })
+  Reveal.whenReady(updateCode)
+
+  function splitTextToFragments (element, str) {
     const re = /<\/?(mark|add|rm|fragment)>([^]*?)<\/\1>/gmi
-    const str = element.innerHTML
-    let lastEnd = 0
     element.innerHTML = ''
+    let lastEnd = 0
     for (let match = re.exec(str); match !== null; match = re.exec(str)) {
       const matchStart = re.lastIndex - match[0].length
       const before = str.substring(lastEnd, matchStart)
@@ -20,14 +24,17 @@
         element.appendChild(document.createTextNode(before))
       }
       if (content) {
-        const contentElm = document.createTextNode(content)
+        let contentElm
         const markSpan = document.createElement('span')
-        markSpan.appendChild(contentElm)
         markSpan.classList.add('code-mark')
         markSpan.classList.add('code-mark-' + type)
         if (type === 'fragment') {
           markSpan.classList.add('fragment')
+          splitTextToFragments(markSpan, content)
           // markSpan.setAttribute('data-fragment-index', fragCounter++)
+        } else {
+          contentElm = document.createTextNode(content)
+          markSpan.appendChild(contentElm)
         }
         element.appendChild(markSpan)
       }
@@ -37,9 +44,8 @@
     if (after) {
       element.appendChild(document.createTextNode(after))
     }
-    element.setAttribute('data-noescape', true)
-  })
-  Reveal.whenReady(updateCode)
+    element
+  }
 
   function updateCode () {
     if (!hljs) {

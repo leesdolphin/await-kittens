@@ -2,8 +2,11 @@
   "kittens": [
     {
       "description": "",
+      "height": 680,
       "id": 4671107278,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/4671107278_4eae936da8_b.jpg",
+      "image_relative_path": "presentation/kittens/v2/4671107278_4eae936da8_b.jpg",
+      "image_url": "https://farm5.staticflickr.com/4034/4671107278_4eae936da8_b.jpg",
       "license": {
         "name": "Attribution-NonCommercial License",
         "url": "https://creativecommons.org/licenses/by-nc/2.0/"
@@ -20,12 +23,16 @@
       "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/nicolekelly/4671107278/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "OLYMPUS DIGITAL CAMERA",
+      "height": 768,
       "id": 9160823116,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
+      "image_relative_path": "presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
+      "image_url": "https://farm8.staticflickr.com/7396/9160823116_b2e3ca15cf_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -42,12 +49,16 @@
       "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/9160823116/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "",
+      "height": 644,
       "id": 15811753760,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15811753760_435a571975_b.jpg",
+      "image_relative_path": "presentation/kittens/v2/15811753760_435a571975_b.jpg",
+      "image_url": "https://farm8.staticflickr.com/7520/15811753760_435a571975_b.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -64,12 +75,16 @@
       "title": "Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
-      }
+      },
+      "width": 1024
     },
     {
       "description": "",
+      "height": 898,
       "id": 8522145980,
       "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/8522145980_7d22ff33e3_h.jpg",
+      "image_relative_path": "presentation/kittens/v2/8522145980_7d22ff33e3_h.jpg",
+      "image_url": "https://farm9.staticflickr.com/8090/8522145980_7d22ff33e3_h.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -86,9 +101,10 @@
       "title": "Amelia Kitten",
       "urls": {
         "photopage": "https://www.flickr.com/photos/brownpau/8522145980/"
-      }
+      },
+      "width": 1600
     }
   ],
-  "per_kitten_time": 0.44527375,
-  "time": 1.781095
+  "per_kitten_time": 1.2718785,
+  "time": 5.087514
 }

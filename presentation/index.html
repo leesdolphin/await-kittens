@@ -43,12 +43,18 @@
       <div class='footer-marking' style='position:absolute; top:0; left:0; right:0; bottom: 110px;'>
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
-          <section data-background-kittens='6157871473' class="image-slide">
-            <h1 class="fragment fade-out" data-fragment-index='1'><pre style="box-shadow: none;" data-dropshadow><code class='lang-python' style='text-align: center; background: transparent'>await kittens()</code></pre></h1>
-            <h3 class="fragment fade-out" data-fragment-index='1' data-dropshadow>Kitten pictures - Asynchronously</h3>
-            <p class="fragment fade-out" data-fragment-index='1' data-dropshadow>
-              <small>Lee Symes</small>
-            </p>
+          <section data-background-kittens='5791484713' class="full-slide has-dark-bg">
+            <div class='image-overlay image-overlay-bottom'>
+              <div class='kitten-overlay-box fragment fade-out' data-fragment-index='1'>
+                <h1 class='dropshadow'>
+                  <pre style="box-shadow: none;"><code class='python' style='text-align: center; background: transparent'>await kittens()</code></pre>
+                </h1>
+                <h3 class='dropshadow'>Kitten pictures - Asynchronously</h3>
+                <p class='dropshadow'>
+                  <b>Lee Symes</b>
+                </p>
+              </div>
+            </div>
           </section>
 
           <section>
@@ -76,7 +82,7 @@
             <section>
               <h2>Getting <i>all</i> the kittens</h2>
               <ol>
-                <li>Get the list of kitten pictures from my collection</li>
+                <li>Using my predermined list of kitten IDs</li>
                 <li>For each picture:
                   <ol>
                     <li>Get the metadata(so we can attribute the picture correctly)</li>
@@ -93,83 +99,71 @@
             </section>
             <section>
               <h2>Connecting to Flickr</h2>
-              <pre><code inline='python' data-indent data-mark>
-                class Flickr():
-
-                  def __init__(self, session, api_key):
-                      self.session = session
-                      self.default_params = dict(format='json', nojsoncallback=1,
-                                                 api_key=api_key)
-
-                  def api_call(self, api_method, **api_params):
-                      api_params.update(method=api_method, **self.default_params)
-                      r = self.session.get('https://api.flickr.com/services/rest/',
-                                           params=api_params)
-                      r.raise_for_status()  # HTTP Errors disappear here.
-                      data = r.json()  # Invalid JSON errors disappear here.
-                      if data.get('stat') != 'ok':
-                          # Flickr indicates failure by setting the `stat` variable.
-                          raise FlickrApiError(data)
-                      return data
+              <pre><code inline='python' data-indent data-mark >
+                def api_call(session, api_method, **api_params):
+                  api_params.update(method=api_method, format='json',
+                                    nojsoncallback=1, api_key=get_api_key())
+                  r = session.get('https://api.flickr.com/services/rest/',
+                                  params=api_params)
+                  r.raise_for_status()  # HTTP Errors disappear here.
+                  data = r.json()  # Invalid JSON errors disappear here.
+                  if data.get('stat') != 'ok':
+                    # Flickr indicates failure by setting the `stat` variable.
+                    raise FlickrApiError(data)
+                  return data
               </code></pre>
             </section>
             <section>
-              <h2>Getting the Metadata</h2>
+              <h2>Getting the Metadata &amp; Image</h2>
               <pre><code inline='python' data-indent data-mark>
-                def download_kitten(flickr, image_folder, photo_id):
-                  data = flickr.api_call('flickr.photos.getInfo', photo_id=photo_id)
-                  sizes = flickr.api_call('flickr.photos.getSizes', photo_id=photo_id)
-
+                def download_kitten(session, image_folder, photo_id):
+                  data = <mark>api_call</mark>(session, 'flickr.photos.getInfo', photo_id=photo_id)
+                  sizes = <mark>api_call</mark>(session, 'flickr.photos.getSizes', photo_id=photo_id)
+                  <fragment>
                   photo_data = get_photo_data(data)
-                  image_url, image_filename = get_image_url_from_sizes(sizes)
-
-                  image_path = image_folder + '/' + image_filename
-                  photo_data['image_path'] = image_path
-                  ...
-              </code></pre>
-            </section>
-            <section>
-              <h2>Downloading the Kitten</h2>
-              <pre><code inline='python' data-indent="2" data-mark>
-                  # image_url, image_path from previous slide.
-                  img = flickr.session.get(image_url, stream=True)
+                  dl_data = get_image_url_from_sizes(image_folder, sizes)
+                  photo_data.update(dl_data)</fragment>
+                  <fragment>
+                  img = <mark>session.get</mark>(dl_data['image_url'], stream=True)
                   img.raise_for_status()
                   content = img.content
-                  with open(image_path, 'wb') as file:
-                    file.write(content)
-                  return photo_data
+                  with open(dl_data['image_path'], 'wb') as file:
+                    file.write(content)</fragment><fragment>
+                  return photo_data</fragment>
               </code></pre>
             </section>
             <section>
               <h2>All together</h2>
               <pre><code class='python' data-indent data-mark>
                 import requests
-                from kittens.output import KittenWriter
                 def main():
-                  flickr = Flickr(requests.session(),
-                                  open('.flickr-key').read().strip())
+                  session = requests.session()
                   with KittenWriter('v1') as writer:
                     folder = writer.image_folder
-                    writer.mark_all([
-                      download_kitten(flickr, folder, '5490797607'),
-                      download_kitten(flickr, folder, '3732837915'),
-                      download_kitten(flickr, folder, '15811753760'),
-                      download_kitten(flickr, folder, '2553836823')
+                    writer.add_all([
+                      download_kitten(session, folder, '5490797607'),
+                      download_kitten(session, folder, '3732837915'),
+                      download_kitten(session, folder, '15811753760'),
+                      download_kitten(session, folder, '2553836823')
                     ])
               </code></pre>
             </section>
-            <section class="image-slide" data-background-kitten-run='v1'>
-              <div class="fragment" style='background-color: white' data-fragment-index="1">
-                Downloading 4 kittens took <span data-kitten-data='v1:time'></span>
-              </div>
+            <section class="full-slide" data-background-kitten-run='v1'>
+              <span class='image-overlay image-overlay-top fragment'>
+                <div class="kitten-overlay-box">
+                  Downloading 4 kittens took <span data-kitten-data='v1:time'></span>
+                </div>
+              </span>
             </section>
           </section>
+
           <section>
             <section>
               <h2>Going faster </h2>
               <h3>using <i><code>asyncio</code></i> and <i><code>aiohttp</code></i></h3>
             </section>
           </section>
+
           <section>
             <section>
               <h2>Async primer</h2>
@@ -231,6 +225,9 @@
                 <fragment>Bye</fragment>
               </code></pre>
             </section>
+          </section>
+
+          <section>
             <section>
               <h2>My first async kitten</h2>
               <pre><code class='python' data-indent data-mark>
@@ -252,12 +249,15 @@
                 loop.run_until_complete(async_main())
               </code></pre>
             </section>
-            <section class="image-slide" data-background-kittens='5630633595'>
-              <div class="fragment" style="background-color: white">
-                Time taken: 10.5 seconds
-              </div>
+            <section class='full-slide' data-background-kittens='5630633595'>
+              <span class='image-overlay image-overlay-top fragment'>
+                <div class="kitten-overlay-box">
+                  Time taken: 10.5 seconds
+                </div>
+              </span>
             </section>
           </section>
+
           <section>
             <section>
               <h2>Running in parallel</h2>
@@ -265,7 +265,7 @@
                 import asyncio
                 import aiohttp
 
-                async def get_kitten(image_url):
+                async def get_kitten(idx, image_url):
                   async with aiohttp.get(image_url) as img:
                     img.raise_for_status()
                     content = await img.read()
@@ -284,12 +284,12 @@
                 loop.run_until_complete(async_main)
               </code></pre>
             </section>
-            <section class="image-slide image-slide-side-by-side">
-              <span class='image-overlay fragment'>
-                <span>
+            <section class="full-slide image-slide-side-by-side">
+              <span class='image-overlay image-overlay-top fragment'>
+                <div class="kitten-overlay-box">
                   Downloading 2 took 14.4 seconds<br />
                   <span style='font-size:70%'>Downloading 1 took 10.5 seconds</span>
-                </span>
+                </div>
               </span>
               <div style='width: 100%;height: 100%;'>
                 <div class='kitten-side-by-side' data-kitten='15497374938'>
@@ -299,7 +299,22 @@
               </div>
             </section>
           </section>
+
           <section>
+            <section class='full-slide' data-background-kittens='2379746512,7433574198' >
+              <span class='image-overlay image-overlay-top'>
+                <div class="kitten-overlay-box">
+                  <h2>Back to the kitten at hand</h2>
+                </div>
+              </span>
+            </section>
+            <section class='full-slide' data-background-kittens='8483159997' >
+              <span class='image-overlay image-overlay-top'>
+                <div class="kitten-overlay-box">
+                  <h2 class=''>... or bush</h2>
+                </div>
+              </span>
+            </section>
             <section>
               <h2>The old order</h2>
               <ol>
@@ -350,44 +365,67 @@
             </section>
             <section>
               <pre><code inline='python' data-indent data-mark>
-              class Flickr:
-                ...
-                <mark>async</mark> def api_call(self, api_method, **api_params):
-                  api_params.update(method=api_method, **self.default_params)
-                  async with self.session.get(
-                      'https://api.flickr.com/services/rest/',
-                      params=api_params) as r:
-                    r.raise_for_status()
-                    data = <mark>await r.json()</mark>
+                async def api_call(self, api_method, **api_params):
+                  api_params.update(method=api_method, format='json',
+                                    nojsoncallback=1, api_key=get_api_key())
+
+                  async with self.session.get('https://api.flickr.com/services/rest/',
+                                              params=api_params) as r:
+                    r.raise_for_status()  # HTTP Errors disappear here.
+                    data = await r.json()  # Invalid JSON errors disappear here.
+
                   if data.get('stat') != 'ok':
-                      # Flickr indicates failure by setting the `stat` variable.
-                      raise FlickrApiError(data)
+                    # Flickr indicates failure by setting the `stat` variable.
+                    raise FlickrApiError(data)
                   return data
               </code></pre>
             </section>
             <section>
               <pre><code inline='python' data-indent data-mark>
               async def download_kitten(flickr, image_folder, photo_id):
-                data = <mark>await</mark> flickr.api_call('flickr.photos.getInfo',
-                                             photo_id=photo_id)
-                sizes = <mark>await</mark> flickr.api_call('flickr.photos.getSizes',
-                                             photo_id=photo_id)
+                data = await api_call(session, 'flickr.photos.getInfo',
+                                      photo_id=photo_id)
+                sizes = await api_call(session, 'flickr.photos.getSizes',
+                                       photo_id=photo_id)
+
                 photo_data = get_photo_data(data)
                 image_url, image_filename = get_image_url_from_sizes(sizes)
                 image_path = image_folder + '/' + image_filename
                 photo_data['image_path'] = image_path
 
-                <mark>async with</mark> flickr.session.get(image_url) as img:
+                # image_url, image_path from previous slide.
+                async with flickr.session.get(image_url) as img:
                   img.raise_for_status()
-                  content = <mark>await</mark> img.read()
+                  content = await img.read()
                 with open(image_path, 'wb') as file:
                   file.write(content)
                 return photo_data
               </code></pre>
             </section>
+            <section>
+              <pre><code class='python' data-indent data-mark>
+                async def async_main():
+                  async with aiohttp.ClientSession() as session:
+                    flickr = Flickr(session,
+                                    open('.flickr-key').read().strip())
+                    with KittenWriter('v2') as writer:
+                      folder = writer.image_folder
+                      kitten_data = await asyncio.gather(
+                        download_kitten(flickr, folder, '4671107278'),
+                        download_kitten(flickr, folder, '9160823116'),
+                        download_kitten(flickr, folder, '15811753760'),
+                        download_kitten(flickr, folder, '8522145980')
+                      )
+                      writer.add_all(kitten_data)
+
+                def main():
+                  loop = asyncio.get_event_loop()
+                  loop.run_until_complete(async_main())
+              </code></pre>
+            </section>
             <section class="image-slide" data-background-kitten-run='v2' >
               <span class='image-overlay fragment' data-fragment-index='1'>
-                <div>
+                <div class="kitten-overlay-box">
                   <span class='fragment' data-fragment-index='1'>
                     Downloading synchronously took <span data-kitten-data='v1:time'></span>
                   </span>
@@ -404,84 +442,87 @@
             </section>
             <section>
               <h2>The new order</h2>
-              <div class='side-by-side-list'>
-                <div>
-                  <ol>
-                    <li>
-                      API Call: <code>getInfo</code>
-                    </li>
-                    <li>
-                      API Call: <code>getSizes</code>
-                    </li>
-                    <li>
-                      Download Kitten Picture
-                    </li>
-                  </ol>
-                </div>
-                <div>
-                  <ol>
-                    <li>
-                      API Call: <code>getInfo</code>
-                    </li>
-                    <li>
-                      API Call: <code>getSizes</code>
-                    </li>
-                    <li>
-                      Download Kitten Picture
-                    </li>
-                  </ol>
-                </div>
+              <div>
+                With every kitten at the same time:
+                <ol>
+                  <li>
+                    API Call: <code>getInfo</code>
+                  </li>
+                  <li>
+                    API Call: <code>getSizes</code>
+                  </li>
+                  <li>
+                    Download Kitten Picture
+                  </li>
+                </ol>
               </div>
             </section>
             <section>
               <h2>The newer order</h2>
               <div class='side-by-side-list fragment' data-fragment-index='1'>
-                <div class='side-by-side-list'>
-                  <div>
-                    <ol>
-                      <li class='fragment' data-fragment-index='1'>
-                        API Call: <code>getInfo</code>
-                      </li>
-                    </ol>
-                  </div>
-                  <div>
-                    <ol>
-                      <li class='fragment' data-fragment-index='1'>
-                        API Call: <code>getSizes</code>
-                      </li>
-                      <li class='fragment' data-fragment-index='2'>
-                        Download Kitten Picture
-                      </li>
-                    </ol>
-                  </div>
+                <div>
+                  <ol>
+                    <li class='fragment' data-fragment-index='1'>
+                      API Call: <code>getInfo</code>
+                    </li>
+                  </ol>
                 </div>
-                <div class='side-by-side-list'>
-                  <div>
-                    <ol>
-                      <li class='fragment' data-fragment-index='1'>
-                        API Call: <code>getInfo</code>
-                      </li>
-                    </ol>
-                  </div>
-                  <div>
-                    <ol>
-                      <li class='fragment' data-fragment-index='1'>
-                        API Call: <code>getSizes</code>
-                      </li>
-                      <li class='fragment' data-fragment-index='2'>
-                        Download Kitten Picture
-                      </li>
-                    </ol>
-                  </div>
+                <div>
+                  <ol>
+                    <li class='fragment' data-fragment-index='1'>
+                      API Call: <code>getSizes</code>
+                    </li>
+                    <li class='fragment' data-fragment-index='2'>
+                      Download Kitten Picture
+                    </li>
+                  </ol>
                 </div>
               </div>
             </section>
+            <section>
+              <pre><code class='python' data-indent data-mark>
+              async def do_kitten_dl(session, image_folder, photo_id):
+                sizes = await api_call(session, 'flickr.photos.getSizes',
+                                       photo_id=photo_id)
+                image_url, image_filename = get_image_url_from_sizes(sizes)
+                image_path = image_folder + '/' + image_filename
+
+                async with session.get(image_url) as img:
+                  img.raise_for_status()
+                  content = await img.read()
+                with open(image_path, 'wb') as file:
+                  file.write(content)
+                return {'image_path': image_path}
+              </pre></code>
+            </section>
+            <section>
+              <pre><code class='python' data-indent data-mark>
+              async def download_kitten(session, image_folder, photo_id):
+                data, dl_data = await asyncio.gather(
+                  api_call(session, 'flickr.photos.getInfo',
+                           photo_id=photo_id),
+                  do_kitten_dl(session, image_folder, photo_id)
+                )
+                photo_data = get_photo_data(data)
+                photo_data.update(dl_data)
+                return photo_data
+              </pre></code>
+
+            </section>
           </section>
-
-
           <section>
             <section>
               <h2>Greatful thanks to</h2>
+              <ul>
+                <li>Daniel</li>
+                <li>Erica Cassie</li>
+                <li>Grant Paton-Simpson</li>
+                <li>Patric</li>
+                <li>Rabbit</li>
+              </ul>
+            </section>
+            <section>
+
             </section>
             <section>
               <h3>Python libraries</h3>
@@ -500,6 +541,10 @@
                 </li>
               </ul>
             </section>
+          </section>
+          <section data-all-kittens>
+          </section>
+
 
         </div>
       </div>

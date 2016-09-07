@@ -46,7 +46,7 @@ def jinja_filter_rel_to(link_location, output_location):
     if not (output_path.exists() and output_path.is_dir()):
         # Must be a file. We need to be relative to the containing directory.
         output_path = output_path.parent
-    return str(link_path.relative_to(output_path))
+    return path_rel(link_path, output_path)
 
 
 def jinja_filter_to_readable_timedelta(time, include_millis=False):
@@ -68,6 +68,9 @@ def jinja_filter_to_readable_timedelta(time, include_millis=False):
             micros = round(time.microseconds, -(6 - include_millis))
         time = datetime.timedelta(days=time.days, seconds=time.seconds,
                                   microseconds=micros)
+        if time.total_seconds() < 1:
+            return '0 seconds'
+        print(time)
         return ago.human(time, past_tense='{}', future_tense='{}')
 
 
@@ -79,6 +82,19 @@ def create_jinja_env():
     env.filters['rel_to'] = jinja_filter_rel_to
     env.filters['to_readable_timedelta'] = jinja_filter_to_readable_timedelta
     return env
+
+
+def path_rel(current_path, new_path):
+    current_parent = current_path
+    path = ''
+    while current_parent.parent:
+        try:
+            return path + str(current_parent.relative_to(new_path))
+        except ValueError:
+            path += '../'
+            current_parent = current_parent.parent
+    raise ValueError('{!r} does not start with {!r}'
+                     .format(current_parent, new_path))
 
 
 class KittenWriter():
@@ -118,8 +134,9 @@ class KittenWriter():
         env = create_jinja_env()
         self.write_per_kitten_templates(jvars, env)
         if self._create_combined:
-          self.write_kitten_dir_templates(jvars, env)
-          self.write_slide_templates(jvars, env)
+            self.write_kitten_dir_templates(jvars, env)
+            self.write_slide_templates(jvars, env)
+        self.manage_images_folder()
 
     def write_kitten_dir_templates(self, jvars, env):
         style_template = env.get_template('style.css')
@@ -139,23 +156,38 @@ class KittenWriter():
         jvars['output_location'] = target_file.parent
         with target_file.open('w') as target:
             template.stream(jvars).dump(target)
-        template = env.get_template('slide_inc.html')
-        target_file = PRESENTATION_DIR.joinpath(
-            'kittens_{}.html'.format(self._version))
-        jvars['output_location'] = target_file.parent
-        with target_file.open('w') as target:
-            template.stream(jvars).dump(target)
+        # template = env.get_template('slide_inc.html')
+        # target_file = PRESENTATION_DIR.joinpath(
+        #     'kittens_{}.html'.format(self._version))
+        # jvars['output_location'] = target_file.parent
+        # with target_file.open('w') as target:
+        #     template.stream(jvars).dump(target)
 
     def write_per_kitten_templates(self, jvars, env):
         template = env.get_template('kitten.html')
         target_dir = KITTENS_DIR / 'individuals'
         target_dir.mkdir(parents=True, exist_ok=True)
         for kitten in jvars['kittens']:
-          kvars = dict(output_location=PRESENTATION_DIR, kitten=kitten)
-          print(kitten)
-          target_file = target_dir / '{id}.html'.format_map(kitten)
-          with target_file.open('w') as target:
-              template.stream(kvars).dump(target)
+            kvars = dict(output_location=PRESENTATION_DIR, kitten=kitten)
+            target_file = target_dir / '{id}.html'.format_map(kitten)
+            with target_file.open('w') as target:
+                template.stream(kvars).dump(target)
+
+    def manage_images_folder(self):
+        html_folder = KITTENS_DIR / 'individuals'
+        img_json = html_folder / 'images.json'
+        data = {}
+        if img_json.exists():
+            data = json.load(img_json.open('r'))
+        for kitten in self._photos:
+            data[kitten['id']] = kitten
+        new_data = dict(data)
+        for kitten_id, k_data in data.items():
+            if not (html_folder / '{}.html'.format(kitten_id)).exists():
+                new_data.pop(kitten_id)
+            elif not pathlib.Path(k_data['image_path']).exists():
+                new_data.pop(kitten_id)
+        json.dump(new_data, img_json.open('w'))
 
     def create_jinja_vars(self, use_pickle=False, use_json=False):
         image_folder = pathlib.Path(self.image_folder)

@@ -16,39 +16,70 @@
     background-color: #8aff6d; }
   .reveal section pre code .code-mark.code-mark-rm {
     background-color: red; }
+.reveal section.full-slide {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  top: 0 !important; }
+.reveal section.stack {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  top: 0 !important; }
 .reveal section code.hljs-inline {
   display: inline-block; }
 .reveal section .image-overlay {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-width: 500px;
+  min-height: 500px;
+  padding: 10% 0;
+  box-sizing: border-box;
+  overflow: hidden;
   justify-content: center;
   align-content: center;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  z-index: 20; }
+  right: 0; }
   .reveal section .image-overlay > * {
-    background-color: white;
-    align-self: center;
-    padding: 0 .3em;
-    display: block; }
+    z-index: 20; }
+  .reveal section .image-overlay.image-overlay-top {
+    justify-content: flex-start; }
+  .reveal section .image-overlay.image-overlay-bottom {
+    justify-content: flex-end; }
 .reveal section .side-by-side-list {
-  display: flex;
-  max-width: 100%;
-  justify-content: center;
-  align-items: baseline; }
+  display: table-row;
+  width: 100%;
+  vertical-align: text-top; }
   .reveal section .side-by-side-list > * {
+    width: 50%;
+    display: table-cell;
+    vertical-align: top;
     align-self: flex-start;
     padding: 0.1em 0.3em;
-    border-right: 2px solid grey;
-    border-left: 2px solid grey; }
+    border-right: 1px solid grey;
+    border-left: 1px solid grey;
+    margin: 0.1em 0.3em;
+    height: 100%; }
     .reveal section .side-by-side-list > *:first-child {
       padding-left: 0px;
       border-left: 0px; }
     .reveal section .side-by-side-list > *:last-child {
       padding-right: 0px;
       border-right: 0px; }
+.reveal section .vertical-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .reveal section .vertical-list > * {
+    align-self: flex-start;
+    padding: 0.1em 0.3em;
+    border-bottom: 2px solid grey;
+    border-top: 2px solid grey; }
 .reveal section .kitten-side-by-side {
   display: table-cell;
   position: relative;
@@ -60,6 +91,21 @@
   .reveal section .kitten-side-by-side .footnote-ref {
     left: 0;
     top: 0; }
+.reveal section .dropshadow {
+  text-shadow: rgba(220, 220, 220, 0.4) -3px -3px 5px, rgba(220, 220, 220, 0.4) 3px -3px 5px, rgba(220, 220, 220, 0.4) -3px 3px 5px, rgba(220, 220, 220, 0.4) 3px 3px 5px; }
+.reveal section .three-quarters-down {
+  position: absolute;
+  display: block;
+  width: 100%;
+  top: 6em; }
+.reveal section .kitten-overlay-box, .reveal section .three-quarters-down div {
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 1em;
+  padding: 0.5em;
+  margin: 0em .3em; }
+  .reveal section .kitten-overlay-box > *:last-child, .reveal section .three-quarters-down div > *:last-child {
+    margin-bottom: 0; }
 .reveal .kitten-side-by-side .footnote-ref {
   left: 0;
   top: 0; }
@@ -130,5 +176,18 @@ ul.libs a code {
   left: 1em;
   top: 1em;
   font-size: 24px; }
+.backgrounds .multi-kitten {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute; }
+  .backgrounds .multi-kitten .kitten-div-img, .backgrounds .multi-kitten img {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    min-width: none;
+    max-width: none;
+    min-height: none;
+    max-height: none; }
 
 /*# sourceMappingURL=custom.css.map */
