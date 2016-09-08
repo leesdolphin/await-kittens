@@ -40,7 +40,6 @@ async def async_main(use_lock):
 
 def main():
   loop = asyncio.get_event_loop()
-  loop.set_debug(True)
   print("Using the locks")
   loop.run_until_complete(async_main(True))
   print('=' * 75)

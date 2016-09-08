@@ -8,6 +8,14 @@
   display: block;
   margin: 0px; }
 
+.reveal .right-top-footer {
+  position: absolute;
+  right: 125px;
+  top: 15px;
+  font-size: 0.7em;
+  }
+.reveal section .small {
+  font-size: 0.6em; }
 .reveal section pre code {
   max-height: 475px; }
   .reveal section pre code .code-mark.code-mark-mark {

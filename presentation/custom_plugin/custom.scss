@@ -14,7 +14,16 @@
 
 
 .reveal {
+  .right-top-footer {
+    position: absolute;
+    right: 125px;
+    top: 10px;
+    font-size: 0.7em;
+  }
   section {
+    .small {
+      font-size: 0.6em;
+    }
     pre code {
       max-height: 475px;
       .code-mark.code-mark-mark {
@@ -197,6 +206,7 @@ footnote {
     font-size: inherit;
   }
 }
+
 
 ul.libs {
   .fa {

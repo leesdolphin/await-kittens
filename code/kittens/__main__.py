@@ -92,7 +92,6 @@ async def async_download_all():
 
 def download_all():
     loop = asyncio.get_event_loop()
-    loop.set_debug(True)
     loop.run_until_complete(async_download_all())
     loop.close()
 
