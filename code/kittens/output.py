@@ -156,12 +156,12 @@ class KittenWriter():
         jvars['output_location'] = target_file.parent
         with target_file.open('w') as target:
             template.stream(jvars).dump(target)
-        # template = env.get_template('slide_inc.html')
-        # target_file = PRESENTATION_DIR.joinpath(
-        #     'kittens_{}.html'.format(self._version))
-        # jvars['output_location'] = target_file.parent
-        # with target_file.open('w') as target:
-        #     template.stream(jvars).dump(target)
+        template = env.get_template('slide_inc.html')
+        target_file = PRESENTATION_DIR.joinpath(
+            'kittens_{}.html'.format(self._version))
+        jvars['output_location'] = target_file.parent
+        with target_file.open('w') as target:
+            template.stream(jvars).dump(target)
 
     def write_per_kitten_templates(self, jvars, env):
         template = env.get_template('kitten.html')
