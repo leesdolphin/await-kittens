@@ -2,11 +2,11 @@
   "kittens": [
     {
       "description": "",
-      "height": 726,
+      "height": 354,
       "id": 5009756482,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5009756482_9f74d1e7d1_b.jpg",
-      "image_relative_path": "presentation/kittens/v3/5009756482_9f74d1e7d1_b.jpg",
-      "image_url": "https://farm5.staticflickr.com/4084/5009756482_9f74d1e7d1_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5009756482_9f74d1e7d1.jpg",
+      "image_relative_path": "presentation/kittens/v3/5009756482_9f74d1e7d1.jpg",
+      "image_url": "https://farm5.staticflickr.com/4084/5009756482_9f74d1e7d1.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -24,15 +24,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/27875041@N02/5009756482/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "",
-      "height": 681,
+      "height": 333,
       "id": 5771289515,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5771289515_13b1b11f2a_b.jpg",
-      "image_relative_path": "presentation/kittens/v3/5771289515_13b1b11f2a_b.jpg",
-      "image_url": "https://farm3.staticflickr.com/2306/5771289515_13b1b11f2a_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5771289515_13b1b11f2a.jpg",
+      "image_relative_path": "presentation/kittens/v3/5771289515_13b1b11f2a.jpg",
+      "image_url": "https://farm3.staticflickr.com/2306/5771289515_13b1b11f2a.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -50,15 +50,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/guerson/5771289515/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "",
-      "height": 682,
+      "height": 333,
       "id": 5642852589,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5642852589_ea790537df_b.jpg",
-      "image_relative_path": "presentation/kittens/v3/5642852589_ea790537df_b.jpg",
-      "image_url": "https://farm6.staticflickr.com/5023/5642852589_ea790537df_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/5642852589_ea790537df.jpg",
+      "image_relative_path": "presentation/kittens/v3/5642852589_ea790537df.jpg",
+      "image_url": "https://farm6.staticflickr.com/5023/5642852589_ea790537df.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -76,15 +76,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/guerson/5642852589/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": " Samsung digital camera",
-      "height": 768,
+      "height": 375,
       "id": 6367077969,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6367077969_05b5e46f8a_b.jpg",
-      "image_relative_path": "presentation/kittens/v3/6367077969_05b5e46f8a_b.jpg",
-      "image_url": "https://farm7.staticflickr.com/6221/6367077969_05b5e46f8a_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v3/6367077969_05b5e46f8a.jpg",
+      "image_relative_path": "presentation/kittens/v3/6367077969_05b5e46f8a.jpg",
+      "image_url": "https://farm7.staticflickr.com/6221/6367077969_05b5e46f8a.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -102,9 +102,9 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/6367077969/"
       },
-      "width": 1024
+      "width": 500
     }
   ],
-  "per_kitten_time": 0.76406675,
-  "time": 3.056267
+  "per_kitten_time": 1.07667825,
+  "time": 4.306713
 }

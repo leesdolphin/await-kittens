@@ -114,7 +114,7 @@ def get_image_url_from_sizes(image_folder, raw_photo_sizes_resp):
         width = size_data['width']
         height = size_data['height']
         img_url = size_data['source']
-        if min(width, height) < 600 or max(width, height) < 1024:
+        if min(width, height) < 300 or max(width, height) < 300:
             continue
         else:
             break

@@ -2,11 +2,11 @@
   "kittens": [
     {
       "description": "",
-      "height": 680,
+      "height": 332,
       "id": 4671107278,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/4671107278_4eae936da8_b.jpg",
-      "image_relative_path": "presentation/kittens/v2/4671107278_4eae936da8_b.jpg",
-      "image_url": "https://farm5.staticflickr.com/4034/4671107278_4eae936da8_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/4671107278_4eae936da8.jpg",
+      "image_relative_path": "presentation/kittens/v2/4671107278_4eae936da8.jpg",
+      "image_url": "https://farm5.staticflickr.com/4034/4671107278_4eae936da8.jpg",
       "license": {
         "name": "Attribution-NonCommercial License",
         "url": "https://creativecommons.org/licenses/by-nc/2.0/"
@@ -24,15 +24,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/nicolekelly/4671107278/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "OLYMPUS DIGITAL CAMERA",
-      "height": 768,
+      "height": 375,
       "id": 9160823116,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
-      "image_relative_path": "presentation/kittens/v2/9160823116_b2e3ca15cf_b.jpg",
-      "image_url": "https://farm8.staticflickr.com/7396/9160823116_b2e3ca15cf_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/9160823116_b2e3ca15cf.jpg",
+      "image_relative_path": "presentation/kittens/v2/9160823116_b2e3ca15cf.jpg",
+      "image_url": "https://farm8.staticflickr.com/7396/9160823116_b2e3ca15cf.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -50,15 +50,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/9160823116/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "",
-      "height": 644,
+      "height": 314,
       "id": 15811753760,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15811753760_435a571975_b.jpg",
-      "image_relative_path": "presentation/kittens/v2/15811753760_435a571975_b.jpg",
-      "image_url": "https://farm8.staticflickr.com/7520/15811753760_435a571975_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/15811753760_435a571975.jpg",
+      "image_relative_path": "presentation/kittens/v2/15811753760_435a571975.jpg",
+      "image_url": "https://farm8.staticflickr.com/7520/15811753760_435a571975.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -76,15 +76,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/29638108@N06/15811753760/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "",
-      "height": 898,
+      "height": 359,
       "id": 8522145980,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/8522145980_7d22ff33e3_h.jpg",
-      "image_relative_path": "presentation/kittens/v2/8522145980_7d22ff33e3_h.jpg",
-      "image_url": "https://farm9.staticflickr.com/8090/8522145980_7d22ff33e3_h.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/v2/8522145980_626b4dc652_z.jpg",
+      "image_relative_path": "presentation/kittens/v2/8522145980_626b4dc652_z.jpg",
+      "image_url": "https://farm9.staticflickr.com/8090/8522145980_626b4dc652_z.jpg",
       "license": {
         "name": "Attribution License",
         "url": "https://creativecommons.org/licenses/by/2.0/"
@@ -102,9 +102,9 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/brownpau/8522145980/"
       },
-      "width": 1600
+      "width": 640
     }
   ],
-  "per_kitten_time": 1.03947125,
-  "time": 4.157885
+  "per_kitten_time": 1.06659075,
+  "time": 4.266363
 }

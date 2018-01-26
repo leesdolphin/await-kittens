@@ -2,11 +2,11 @@
   "kittens": [
     {
       "description": "",
-      "height": 681,
+      "height": 333,
       "id": 5791484713,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/5791484713_578d9fb14d_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/5791484713_578d9fb14d_b.jpg",
-      "image_url": "https://farm3.staticflickr.com/2466/5791484713_578d9fb14d_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/5791484713_578d9fb14d.jpg",
+      "image_relative_path": "presentation/kittens/pres/5791484713_578d9fb14d.jpg",
+      "image_url": "https://farm3.staticflickr.com/2466/5791484713_578d9fb14d.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -24,15 +24,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/guerson/5791484713/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "These are our foster kittens, Luna &amp; Tigger. They are five weeks old.",
-      "height": 682,
+      "height": 333,
       "id": 5630633595,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/5630633595_baa0e24b68_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/5630633595_baa0e24b68_b.jpg",
-      "image_url": "https://farm6.staticflickr.com/5023/5630633595_baa0e24b68_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/5630633595_baa0e24b68.jpg",
+      "image_relative_path": "presentation/kittens/pres/5630633595_baa0e24b68.jpg",
+      "image_url": "https://farm6.staticflickr.com/5023/5630633595_baa0e24b68.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -50,15 +50,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/guerson/5630633595/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "Neighborhood kitten.",
-      "height": 1024,
+      "height": 500,
       "id": 15497374938,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/15497374938_d60dfdd8de_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/15497374938_d60dfdd8de_b.jpg",
-      "image_url": "https://farm6.staticflickr.com/5601/15497374938_d60dfdd8de_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/15497374938_d60dfdd8de.jpg",
+      "image_relative_path": "presentation/kittens/pres/15497374938_d60dfdd8de.jpg",
+      "image_url": "https://farm6.staticflickr.com/5601/15497374938_d60dfdd8de.jpg",
       "license": {
         "name": "Attribution-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nd/2.0/"
@@ -76,15 +76,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/soumyaroop_chatterjee/15497374938/"
       },
-      "width": 683
+      "width": 333
     },
     {
       "description": "",
-      "height": 1024,
+      "height": 500,
       "id": 4006914394,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/4006914394_924d9e895d_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/4006914394_924d9e895d_b.jpg",
-      "image_url": "https://farm4.staticflickr.com/3288/4006914394_924d9e895d_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/4006914394_924d9e895d.jpg",
+      "image_relative_path": "presentation/kittens/pres/4006914394_924d9e895d.jpg",
+      "image_url": "https://farm4.staticflickr.com/3288/4006914394_924d9e895d.jpg",
       "license": {
         "name": "Attribution-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nd/2.0/"
@@ -102,15 +102,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/22254604@N05/4006914394/"
       },
-      "width": 732
+      "width": 357
     },
     {
       "description": "",
-      "height": 681,
+      "height": 333,
       "id": 2379746512,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/2379746512_e2cfe9f018_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/2379746512_e2cfe9f018_b.jpg",
-      "image_url": "https://farm4.staticflickr.com/3253/2379746512_e2cfe9f018_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/2379746512_e2cfe9f018.jpg",
+      "image_relative_path": "presentation/kittens/pres/2379746512_e2cfe9f018.jpg",
+      "image_url": "https://farm4.staticflickr.com/3253/2379746512_e2cfe9f018.jpg",
       "license": {
         "name": "Attribution-ShareAlike License",
         "url": "https://creativecommons.org/licenses/by-sa/2.0/"
@@ -128,15 +128,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/jacob-davies/2379746512/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "Blog: <a href=\"http://www.miksmedia.net\" rel=\"nofollow\">www.miksmedia.net</a>\nFacebook: <a href=\"http://www.facebook.com/miksmedia\" rel=\"nofollow\">www.facebook.com/miksmedia</a>\nTwitter: <a href=\"http://www.twitter.com/miksmedia\" rel=\"nofollow\">www.twitter.com/miksmedia</a>\n\nMy husband found these two, dumped in a ditch in the middle of nowhere, completely by chance. They went for a hotshot with his friend and decided to stop there to take a couple of shots and hear those little guys making noise.  There were originally 3, but one did not survive before they were found... ;(  My questions is: how can people still do such things when there is so many adoption options available around?!?!?!  \nSo, they've brought them home since it was too late to take them to SPCA and now they are ours... What else could I do when surrounded by three pairs of puppy eyes and two kittens?! I had to take them in.. (Twist my rubber arm ;D)",
-      "height": 640,
+      "height": 333,
       "id": 7433574198,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/7433574198_59d3a6b48a_o.jpg",
-      "image_relative_path": "presentation/kittens/pres/7433574198_59d3a6b48a_o.jpg",
-      "image_url": "https://farm8.staticflickr.com/7260/7433574198_59d3a6b48a_o.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/7433574198_152ff8ca2c.jpg",
+      "image_relative_path": "presentation/kittens/pres/7433574198_152ff8ca2c.jpg",
+      "image_url": "https://farm8.staticflickr.com/7260/7433574198_152ff8ca2c.jpg",
       "license": {
         "name": "All Rights Reserved",
         "url": ""
@@ -154,15 +154,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/66646423@N04/7433574198/"
       },
-      "width": 960
+      "width": 500
     },
     {
       "description": "Cat in the bush",
-      "height": 681,
+      "height": 333,
       "id": 8483159997,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/8483159997_2d525f79f1_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/8483159997_2d525f79f1_b.jpg",
-      "image_url": "https://farm9.staticflickr.com/8375/8483159997_2d525f79f1_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/8483159997_2d525f79f1.jpg",
+      "image_relative_path": "presentation/kittens/pres/8483159997_2d525f79f1.jpg",
+      "image_url": "https://farm9.staticflickr.com/8375/8483159997_2d525f79f1.jpg",
       "license": {
         "name": "Attribution-NonCommercial-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/"
@@ -180,15 +180,15 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/22254604@N05/8483159997/"
       },
-      "width": 1024
+      "width": 500
     },
     {
       "description": "Soft kitty, warm kitty, little ball of fur\nHappy kitty, sleepy kitty, purr, purr, purr\n",
-      "height": 819,
+      "height": 400,
       "id": 6128762944,
-      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/6128762944_1a7e2ebc1c_b.jpg",
-      "image_relative_path": "presentation/kittens/pres/6128762944_1a7e2ebc1c_b.jpg",
-      "image_url": "https://farm7.staticflickr.com/6201/6128762944_1a7e2ebc1c_b.jpg",
+      "image_path": "/home/lee/Scratchpad/await-kittens/presentation/kittens/pres/6128762944_1a7e2ebc1c.jpg",
+      "image_relative_path": "presentation/kittens/pres/6128762944_1a7e2ebc1c.jpg",
+      "image_url": "https://farm7.staticflickr.com/6201/6128762944_1a7e2ebc1c.jpg",
       "license": {
         "name": "Attribution-NoDerivs License",
         "url": "https://creativecommons.org/licenses/by-nd/2.0/"
@@ -206,9 +206,9 @@
       "urls": {
         "photopage": "https://www.flickr.com/photos/bambe1964/6128762944/"
       },
-      "width": 1024
+      "width": 500
     }
   ],
-  "per_kitten_time": 0.445595125,
-  "time": 3.564761
+  "per_kitten_time": 0.54698375,
+  "time": 4.37587
 }
